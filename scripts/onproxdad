@@ -22,7 +22,7 @@ fi
 if [ -f "$proxdad_config_file" ]; then
     source "$proxdad_config_file"
 else
-    echo -e "\e[1;31mError: proxdad.conf not found. REINSTALL ProxDad using install script.\e[0m"
+    echo -e "\e[1;31mError: proxdad.conf not found. INSTALL ProxDad again.\e[0m"
     exit 1
 fi
 
