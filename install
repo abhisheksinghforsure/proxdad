@@ -1,0 +1,86 @@
+#!/bin/bash
+
+proxdad_version="v1.0"
+proxdad_directory="$HOME/.proxdad"
+
+proxdad_conf="$proxdad_directory/proxdad.conf"
+
+# Check if ProxDad is already installed
+if [ -d "$proxdad_directory" ]; then
+    echo "ProxDad $proxdad_version is already INSTALLED at $proxdad_directory"
+    read -p "Do you want to RE-INSTALLED it? [y/N]: " reinstall_choice
+    if [ "${reinstall_choice,,}" != "y" ] && [ "${reinstall_choice,,}" != "yes" ]; then
+        echo "Exiting without reinstalling."
+        exit 0
+    else
+        echo "Reinstalling ProxDad $proxdad_version"
+    fi
+fi
+
+# Get the absolute path of the install script
+INSTALL_SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Create the destination folder
+mkdir -p "$proxdad_directory"
+
+# Copy the scripts to the destination folder
+cp -r "$INSTALL_SCRIPT_PATH/scripts" "$proxdad_directory"
+
+# Give executable permissions to the scripts
+chmod +x -R "$proxdad_directory/scripts"
+
+# Add ProxDad directory to the PATH variable
+echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
+echo "export PATH=\$PATH:$proxdad_directory/scripts" >> "$HOME/.bashrc"
+echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
+
+# ProxDad 
+echo -e "Welcome to ProxDad $proxdad_version installation\n"
+
+# Display default values and ask if the user wants to continue with them
+echo "Default values"
+echo "Proxy Host: 172.31.102.29"
+echo "Proxy Port: 3128"
+echo "Proxy Username: edcguest"
+echo "Proxy Password: edcguest"
+read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
+
+# Set default values if the user presses Enter without typing anything
+if [ -z "$continue_choice" ] || [ "$continue_choice" == "y" ] || [ "$continue_choice" == "yes" ]; then
+    proxy_host="172.31.102.29"
+    proxy_port="3128"
+    proxy_username="edcguest"
+    proxy_password="edcguest"
+else
+    echo -e "\n"
+    read -p "Enter proxy host: " proxy_host
+    read -p "Enter proxy port: " proxy_port
+    read -p "Enter proxy username: " proxy_username
+    read -p "Enter proxy password: " -s proxy_password  # -s flag hides the password input
+    echo -e "\n"
+fi
+
+# Store proxy configuration in the config file
+echo "proxdad_version=$proxdad_version" > "$proxdad_conf"
+echo -e "proxdad_directory=$proxdad_directory\n" >> "$proxdad_conf"
+
+echo "proxy_host=$proxy_host" >> "$proxdad_conf"
+echo "proxy_port=$proxy_port" >> "$proxdad_conf"
+echo "proxy_username=$proxy_username" >> "$proxdad_conf"
+echo "proxy_password=$proxy_password" >> "$proxdad_conf"
+
+if ! command -v ncat &> /dev/null; then
+    echo "Installing ncat for ssh proxy configuration..."
+    sudo apt update -y && sudo apt install -y ncat
+
+    if [ $? -eq 0 ]; then
+        echo "'ncat' is installed successfully"
+    else
+        echo "ProxDad failed to install 'ncat'\nUse 'sudo apt install ncat' to install 'ncat' for proper functioning of ProxDad."
+        exit 1
+    fi
+fi
+
+echo "ProxDad has been succesfully INSTALLED at $proxdad_directory"
+
+exit 0
