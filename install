@@ -14,7 +14,7 @@ fi
 # Check if ProxDad is already installed
 if [ -d "$proxdad_installation_path" ]; then
     echo "ProxDad $proxdad_version is already INSTALLED at $proxdad_installation_path"
-    read -p "Do you want to RE-INSTALLED it? [y/N]: " reinstall_choice
+    read -p "Do you want to REINSTALLED it? [y/N]: " reinstall_choice
     if [ "${reinstall_choice,,}" != "y" ] && [ "${reinstall_choice,,}" != "yes" ]; then
         echo "Exiting without reinstalling."
         exit 0
