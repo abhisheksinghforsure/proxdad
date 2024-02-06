@@ -5,6 +5,12 @@ proxdad_directory="$HOME/.proxdad"
 
 proxdad_conf="$proxdad_directory/proxdad.conf"
 
+# Check if the script is run by root
+if [ "$(id -u)" = "0" ]; then
+    echo "DON'T run as root."
+    exit 1
+fi
+
 # Check if ProxDad is already installed
 if [ -d "$proxdad_directory" ]; then
     echo "ProxDad $proxdad_version is already INSTALLED at $proxdad_directory"
@@ -16,6 +22,9 @@ if [ -d "$proxdad_directory" ]; then
         echo "Reinstalling ProxDad $proxdad_version"
     fi
 fi
+
+# Get sudo permission for nothing
+sudo -v
 
 # Get the absolute path of the install script
 INSTALL_SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
