@@ -1,9 +1,9 @@
 #!/bin/bash
 
 proxdad_version="v1.0"
-proxdad_directory="$HOME/.proxdad"
+proxdad_installation_path="$HOME/.proxdad"
 
-proxdad_conf="$proxdad_directory/proxdad.conf"
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
 
 # Check if the script is run by root
 if [ "$(id -u)" = "0" ]; then
@@ -12,8 +12,8 @@ if [ "$(id -u)" = "0" ]; then
 fi
 
 # Check if ProxDad is already installed
-if [ -d "$proxdad_directory" ]; then
-    echo "ProxDad $proxdad_version is already INSTALLED at $proxdad_directory"
+if [ -d "$proxdad_installation_path" ]; then
+    echo "ProxDad $proxdad_version is already INSTALLED at $proxdad_installation_path"
     read -p "Do you want to RE-INSTALLED it? [y/N]: " reinstall_choice
     if [ "${reinstall_choice,,}" != "y" ] && [ "${reinstall_choice,,}" != "yes" ]; then
         echo "Exiting without reinstalling."
@@ -30,17 +30,17 @@ sudo -v
 INSTALL_SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Create the destination folder
-mkdir -p "$proxdad_directory"
+mkdir -p "$proxdad_installation_path"
 
 # Copy the scripts to the destination folder
-cp -r "$INSTALL_SCRIPT_PATH/scripts" "$proxdad_directory"
+cp -r "$INSTALL_SCRIPT_PATH/scripts" "$proxdad_installation_path"
 
 # Give executable permissions to the scripts
-chmod +x -R "$proxdad_directory/scripts"
+chmod +x -R "$proxdad_installation_path/scripts"
 
 # Add ProxDad directory to the PATH variable
 echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
-echo "export PATH=\$PATH:$proxdad_directory/scripts" >> "$HOME/.bashrc"
+echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
 echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 
 # ProxDad 
@@ -70,13 +70,13 @@ else
 fi
 
 # Store proxy configuration in the config file
-echo "proxdad_version=$proxdad_version" > "$proxdad_conf"
-echo -e "proxdad_directory=$proxdad_directory\n" >> "$proxdad_conf"
+echo "proxdad_version=$proxdad_version" > "$proxdad_config_file"
+echo -e "proxdad_installation_path=$proxdad_installation_path\n" >> "$proxdad_config_file"
 
-echo "proxy_host=$proxy_host" >> "$proxdad_conf"
-echo "proxy_port=$proxy_port" >> "$proxdad_conf"
-echo "proxy_username=$proxy_username" >> "$proxdad_conf"
-echo "proxy_password=$proxy_password" >> "$proxdad_conf"
+echo "proxy_host=$proxy_host" >> "$proxdad_config_file"
+echo "proxy_port=$proxy_port" >> "$proxdad_config_file"
+echo "proxy_username=$proxy_username" >> "$proxdad_config_file"
+echo "proxy_password=$proxy_password" >> "$proxdad_config_file"
 
 if ! command -v ncat &> /dev/null; then
     echo "Installing ncat for ssh proxy configuration..."
@@ -90,6 +90,6 @@ if ! command -v ncat &> /dev/null; then
     fi
 fi
 
-echo "ProxDad has been succesfully INSTALLED at $proxdad_directory"
+echo "ProxDad has been succesfully INSTALLED at $proxdad_installation_path"
 
 exit 0

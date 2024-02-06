@@ -1,8 +1,8 @@
 #!/bin/bash
 
-proxdad_directory="$HOME/.proxdad"
-proxdad_conf="$proxdad_directory/proxdad.conf"
-proxdad_status="$proxdad_directory/scripts/statusproxdad"
+proxdad_installation_path="$HOME/.proxdad"
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+proxdad_status="$proxdad_installation_path/scripts/statusproxdad"
 
 source "$proxdad_status"
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-proxdad_directory="$HOME/.proxdad"
-proxdad_conf="$proxdad_directory/proxdad.conf"
-proxdad_status="$proxdad_directory/scripts/statusproxdad"
+proxdad_installation_path="$HOME/.proxdad"
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+proxdad_status="$proxdad_installation_path/scripts/statusproxdad"
 
 source "$proxdad_status"
 
@@ -13,8 +13,8 @@ if is_proxdad_on; then
 fi
 
 # Check if proxdad.conf exists
-if [ -f "$proxdad_conf" ]; then
-    source "$proxdad_conf"
+if [ -f "$proxdad_config_file" ]; then
+    source "$proxdad_config_file"
 else
     echo -e "\e[1;31mError: proxdad.conf not found. Run ProxDad installer first.\e[0m"
     exit 1

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-proxdad_directory="$HOME/.proxdad"
+proxdad_installation_path="$HOME/.proxdad"
 
-echo "ProxDad is INSTALLED at $proxdad_directory"
+echo "ProxDad is INSTALLED at $proxdad_installation_path"

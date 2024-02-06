@@ -1,13 +1,13 @@
 #!/bin/bash
 
 proxdad_version="v1.0"
-proxdad_directory="$HOME/.proxdad"
+proxdad_installation_path="$HOME/.proxdad"
 
-proxdad_conf="$proxdad_directory/proxdad.conf"
-proxdad_status="$proxdad_directory/scripts/statusproxdad"
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+proxdad_status="$proxdad_installation_path/scripts/statusproxdad"
 
 # Check if ProxDad is already uninstalled
-if [ ! -d "$proxdad_directory" ]; then
+if [ ! -d "$proxdad_installation_path" ]; then
     echo "ProxDad is already UNINSTALLED"
     exit 0
 fi
@@ -28,12 +28,12 @@ if [ "${uninstall_choice,,}" != "y" ] && [ "${uninstall_choice,,}" != "yes" ]; t
 fi
 
 # Remove the destination folder and its contents
-sudo rm -rf "$proxdad_directory"
+sudo rm -rf "$proxdad_installation_path"
 
 # Remove ProxDad directory from PATH in .bashrc
 sed -i "/# Adding ProxDad scripts folder to PATH/,/# End of ProxDad scripts folder to PATH/d" "$HOME/.bashrc"
 
-echo "ProxDad has been succesfully UNINSTALLED from $proxdad_directory"
+echo "ProxDad has been succesfully UNINSTALLED from $proxdad_installation_path"
 
 # Source the .bashrc file to apply changes to the current session
 source "$HOME/.bashrc"
