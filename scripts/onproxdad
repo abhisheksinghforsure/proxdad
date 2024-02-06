@@ -1,0 +1,66 @@
+#!/bin/bash
+
+proxdad_directory="$HOME/.proxdad"
+proxdad_conf="$proxdad_directory/proxdad.conf"
+proxdad_status="$proxdad_directory/scripts/statusproxdad"
+
+source "$proxdad_status"
+
+# Check ProxDad status
+if is_proxdad_on; then
+    echo "ProxDad is already ON"
+    exit 0
+fi
+
+# Check if proxdad.conf exists
+if [ -f "$proxdad_conf" ]; then
+    source "$proxdad_conf"
+else
+    echo -e "\e[1;31mError: proxdad.conf not found. Run ProxDad installer first.\e[0m"
+    exit 1
+fi
+
+# Backup of environment
+sudo cp /etc/environment /etc/environment.bak
+
+# Set proxy environment variables for system-wide use
+echo -e "export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}" | sudo tee -a /etc/environment > /dev/null
+echo -e "export https_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}" | sudo tee -a /etc/environment > /dev/null
+echo -e "export ftp_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}" | sudo tee -a /etc/environment > /dev/null
+echo -e "export no_proxy=localhost,127.0.0.1" | sudo tee -a /etc/environment > /dev/null
+
+# Set proxy for apt (package manager)
+echo -e "Acquire::http::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}/\";" | sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null
+echo -e "Acquire::https::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}/\";" | sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null
+echo -e "Acquire::ftp::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}/\";" | sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null
+
+# Set proxy for gnome proxy applet
+gsettings set org.gnome.system.proxy mode 'manual'
+for protocol in "http" "https" "ftp"; do
+    gsettings set "org.gnome.system.proxy.$protocol" host "$proxy_username:$proxy_password@$proxy_host"
+    gsettings set "org.gnome.system.proxy.$protocol" port $proxy_port
+done
+
+# Set proxy for Git
+if command -v git &> /dev/null; then
+    git config --global http.proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+    git config --global https.proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+fi
+
+# Set proxy for npm
+if command -v npm &> /dev/null; then
+    npm config set proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+    npm config set https-proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+fi
+
+# Set proxy for Snap
+if command -v snap &> /dev/null; then
+    sudo snap set system proxy.http="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+    sudo snap set system proxy.https="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+fi
+
+# Set proxy for ssh
+echo -e "ProxyCommand ncat --proxy-type http --proxy $proxy_host:$proxy_port --proxy-auth $proxy_username:$proxy_password %h %p" >> ~/.ssh/config
+
+# Display a message indicating success
+echo "ProxDad is turned ON"

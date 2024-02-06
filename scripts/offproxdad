@@ -1,0 +1,53 @@
+#!/bin/bash
+
+proxdad_directory="$HOME/.proxdad"
+proxdad_conf="$proxdad_directory/proxdad.conf"
+proxdad_status="$proxdad_directory/scripts/statusproxdad"
+
+source "$proxdad_status"
+
+# Check ProxDad status
+if ! is_proxdad_on; then
+    echo "ProxDad is already OFF"
+    exit 0
+fi
+
+# Remove proxy environment variables
+sudo sed -i '/http_proxy/d' /etc/environment
+sudo sed -i '/https_proxy/d' /etc/environment
+sudo sed -i '/ftp_proxy/d' /etc/environment
+sudo sed -i '/no_proxy/d' /etc/environment
+
+# Remove proxy for apt
+sudo rm -f /etc/apt/apt.conf.d/40proxy
+
+# Remove proxy for gnome proxy applet
+gsettings reset org.gnome.system.proxy mode
+for protocol in "http" "https" "ftp"; do
+    gsettings reset "org.gnome.system.proxy.$protocol" host
+    gsettings reset "org.gnome.system.proxy.$protocol" port
+done
+
+# Remove proxy for Git
+if command -v git &> /dev/null; then
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy
+fi
+
+# Remove proxy for npm
+if command -v npm &> /dev/null; then
+    npm config delete proxy
+    npm config delete https-proxy
+fi
+
+# Remove proxy for Snap
+if command -v snap &> /dev/null; then
+    sudo snap set system proxy.http=""
+    sudo snap set system proxy.https=""
+fi
+
+# Remove proxy for ssh
+sed -i '/^ *ProxyCommand /d' ~/.ssh/config
+
+# Display a message indicating success
+echo "ProxDad is turned OFF"

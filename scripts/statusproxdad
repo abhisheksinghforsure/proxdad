@@ -1,0 +1,36 @@
+#!/bin/bash
+
+is_proxdad_on() {
+    # if [ -n "$http_proxy" ]; then
+    if grep -q "http_proxy" "/etc/environment"; then
+        return 0  # Yes, ProxDad is ON
+    else
+        return 1  # No, ProxDad is OFF
+    fi
+}
+
+get_proxdad_status() {
+    if is_proxdad_on; then
+        # Get proxy details from environment variables
+        proxy_var=$(grep -E "http_proxy" "/etc/environment")
+
+        # Extract host and port using awk
+        proxy_host=$(echo "$proxy_var" | awk -F '[@:]' '{print $4}')
+        proxy_port=$(echo "$proxy_var" | awk -F '[@:]' '{print $5}')
+
+        echo "$proxy_host:$proxy_port"
+    fi
+}
+
+# Check if the script is being executed directly
+if [ "$0" = "$BASH_SOURCE" ]; then
+    # The script is executed directly, so call get_proxy_details
+    proxdad_status=$(get_proxdad_status)
+
+    if [ -n "$proxdad_status" ]; then
+        echo "$proxdad_status"
+        echo "ProxDad is ON"
+    else
+        echo "ProxDad is OFF"
+    fi
+fi
