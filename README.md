@@ -1,13 +1,18 @@
 # ProxDad
 
-ProxDad is a collection of bash scripts designed to simplify the management of proxy settings in Linux environments. It provides a set of utilities to quickly configure and switch between different proxy settings, making it easier for users to adapt to varying network configurations.
+ProxDad is a collection of bash scripts designed to simplify the management of proxy settings in Linux environments. It provides a set of utilities to quickly turn ON or OFF proxy settings for different applications, making it easier for users to configure proxy settings.
 
-## Features
+## Features 
 
-- Easily switch between different proxy configurations.
-- Supports HTTP, HTTPS, FTP, and SOCKS proxies.
-- Simple command-line interface for convenient usage.
-- Lightweight and easy to install.
+Configures proxy settings for following applications:
+
+- Environment variables for system-wide use.
+- APT (Advanced Package Tool) for package management.
+- GNOME proxy applet settings.
+- Git for version control.
+- npm (Node Package Manager) for Node.js packages.
+- Snap for managing snap packages.
+- SSH for secure shell connections.
 
 ## Installation
 
