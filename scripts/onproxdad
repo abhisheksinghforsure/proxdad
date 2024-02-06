@@ -4,6 +4,12 @@ proxdad_installation_path="$HOME/.proxdad"
 proxdad_config_file="$proxdad_installation_path/proxdad.conf"
 proxdad_status="$proxdad_installation_path/scripts/statusproxdad"
 
+# Check if the script is run by root
+if [ "$(id -u)" = "0" ]; then
+    echo "DON'T run as root."
+    exit 1
+fi
+
 source "$proxdad_status"
 
 # Check ProxDad status
