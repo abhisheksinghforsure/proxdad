@@ -1,4 +1,21 @@
 #!/bin/bash
+# 
+# statusproxdad script | MIT License
+# 
+# This script checks whether proxy details are applied to the system environment.
+# 
+#
+# It defines two functions: is_proxdad_on, which examines if the proxy details 
+# are present in the /etc/environment file, and get_proxdad_status, which 
+# retrieves and formats the proxy host and port if the proxy is enabled. 
+# The script also verifies if it's executed directly and if so, it calls 
+# get_proxdad_status to obtain and display the proxy details along with 
+# indicating whether "ProxDad" (proxy) is on or off. It essentially serves as 
+# a tool to check and report the status of a proxy configuration on the system.
+# 
+# 
+# Copyright (c) 2023 Abhishek Singh
+# 
 
 # Check if proxy details is applied to environment
 is_proxdad_on() {

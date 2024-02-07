@@ -1,4 +1,17 @@
 #!/bin/bash
+# 
+# whereproxdad script | MIT License
+# 
+# This script reveals ProxDad version "v1.0" installation path in a user's system.
+# 
+# 
+# It is intended to provide users with a concise notification regarding 
+# where ProxDad is installed on their system, ensuring clarity and ease 
+# of access for future reference.
+# 
+# 
+# Copyright (c) 2023 Abhishek Singh
+# 
 
 proxdad_installation_path="$HOME/.proxdad"
 
