@@ -105,7 +105,10 @@ if ! command -v ncat &> /dev/null; then
     if [ $? -eq 0 ]; then
         echo "'ncat' is installed successfully"
     else
-        echo "ProxDad failed to install 'ncat'\nUse 'sudo apt install ncat' to install 'ncat' for proper functioning of ProxDad."
+        echo "ProxDad failed to install 'ncat'"
+        echo "ProxDad uses 'ncat' to configure proxy settings to ssh"
+        echo "ssh will not work with proxy settings, if 'ncat' is not installed"
+        echo "Use 'sudo apt install ncat' to install it"
         exit 1
     fi
 fi
