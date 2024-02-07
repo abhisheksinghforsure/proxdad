@@ -14,7 +14,7 @@
 # confirming ProxDad is turned ON.
 # 
 # 
-# Copyright (c) 2023 Abhishek Singh
+# Copyright (c) 2024 Abhishek Singh
 # 
 
 proxdad_installation_path="$HOME/.proxdad"
