@@ -46,19 +46,19 @@ chmod +x install uninstall
 ## Usage
 
 1. Open a new terminal.
-2. To turn on ProxDad, type the following command:
+2. To turn ON ProxDad, type the following command:
 
 ```bash
 onproxdad
 ```
 
-3. To turn off ProxDad, type the following command:
+3. To turn OFF ProxDad, type the following command:
 
 ```bash
 offproxdad
 ```
 
-4. To check whether ProxDad is on or off, type the following command:
+4. To check whether ProxDad is ON or OFF, type the following command:
 
 ```bash
 statusproxdad
