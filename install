@@ -1,10 +1,11 @@
 #!/bin/bash
 #
-# MIT License
+# install script | MIT License
 #
-# install script
+# This script installs ProxDad version "v1.0" to a user's system. 
 #
-# This script checks for root privileges to ensure it's not run with elevated 
+#
+# It first checks for root privileges to ensure it's not run with elevated 
 # permissions. If ProxDad is already installed, it prompts the user to confirm 
 # whether they want to reinstall it. Next, it copies scripts to the user's 
 # home directory inside /.proxdad and gives them executable permission. It then
