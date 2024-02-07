@@ -1,4 +1,20 @@
 #!/bin/bash
+# 
+# offproxdad script | MIT License
+# 
+# This script turns OFF ProxDad version "v1.0" in a user's system.
+# 
+# 
+# It first checks for root privileges to ensure it's not run with elevated 
+# permissions. It then checks if ProxDad is already OFF.
+# It removes environment variables, APT package manager settings, 
+# GNOME proxy applet configurations, as well as proxy settings for Git, npm, 
+# Snap, and SSH. Upon successful deconfiguration, it displays a message 
+# confirming ProxDad is turned OFF.
+# 
+# 
+# Copyright (c) 2023 Abhishek Singh
+# 
 
 proxdad_installation_path="$HOME/.proxdad"
 proxdad_config_file="$proxdad_installation_path/proxdad.conf"
