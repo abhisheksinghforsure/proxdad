@@ -1,0 +1,44 @@
+#!/bin/bash
+
+proxdad_version="v1.0"
+proxdad_installation_path="$HOME/.proxdad"
+
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+
+source "$proxdad_config_file"
+
+# Function to update variables in config file
+update_config() {
+    sed -i "s/^$1=.*/$1=$2/" $proxdad_config_file
+}
+
+# Display default values and ask if the user wants to change them
+echo -e "Welcome to ProxDad $proxdad_version modification\n"
+echo "Default values:"
+echo "Proxy Host: $proxy_host"
+echo "Proxy Port: $proxy_port"
+echo "Proxy Username: $proxy_username"
+echo "Proxy Password: $proxy_password"
+read -p "Do you want to modify these values? [y/N]: " continue_choice
+
+# Take input from the user
+if [ "${continue_choice,,}" != "y" ] && [ "${continue_choice,,}" != "yes" ]; then
+    echo "Exiting without modifying."
+    exit 0
+else
+    read -p "Enter proxy host: " proxy_host
+    read -p "Enter proxy port: " proxy_port
+    read -p "Enter proxy username: " proxy_username
+    read -p "Enter proxy password: " -s proxy_password  # -s flag hides the password input
+    echo -e "\n"
+fi
+
+# Update values in config file
+update_config "proxy_host" "$proxy_host"
+update_config "proxy_port" "$proxy_port"
+update_config "proxy_username" "$proxy_username"
+update_config "proxy_password" "$proxy_password"
+
+echo "ProxDad has succesfully MODIFIED $proxdad_config_file"
+
+exit 0
