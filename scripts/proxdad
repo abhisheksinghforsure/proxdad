@@ -1,0 +1,75 @@
+#!/bin/bash
+
+proxdad_version="v1.0"
+proxdad_installation_path="$HOME/.proxdad"
+
+# Define usage function
+usage() {
+    echo "ProxDad $proxdad_version is a collection of bash scripts that help manage proxy settings "
+    echo -e "in Linux. It configures proxy settings for: \n"
+    echo "1. Environment variables for system-wide use."
+    echo "2. APT (Advanced Package Tool) for package management."
+    echo "3. GNOME proxy applet settings."
+    echo "4. Git for version control."
+    echo "5. npm (Node Package Manager) for Node.js packages."
+    echo "6. Snap for managing snap packages."
+    echo "7. SSH for secure shell connections."
+    echo -e "\nInstalled at $proxdad_installation_path\n"
+    echo -e "Copyright (c) 2024 Abhishek Singh\n"
+    echo "Usage: $0 [-h | --help] [-v | --version] [command]"
+    echo "Options:"
+    echo "  -h, --help      Display this help"
+    echo "  -v, --version   Display version information"
+    echo "Commands:"
+    echo "  modify          Modify Proxdad settings"
+    echo "  off             Turn off Proxdad"
+    echo "  on              Turn on Proxdad"
+    echo "  status          Get the status of Proxdad"
+    echo "  where           Show the location of Proxdad"
+    echo -e "\nFor bug reports, please visit: \nhttps://github.com/abhisheksinghforsure/proxdad/issues"
+    exit 1
+}
+
+# Define version function
+version() {
+    echo "$(basename $0) version 1.0"
+    exit 0
+}
+
+# Parse command-line options
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -h|--help)
+            usage
+            ;;
+        -v|--version)
+            version
+            ;;
+        *)  # If no options match, consider it as a command
+            COMMAND="$1"
+            ;;
+    esac
+    shift
+done
+
+# Check if command argument is provided
+if [ -z "$COMMAND" ]; then
+    echo "Error: No command specified."
+    usage
+fi
+
+# Convert shortened command names to full command names
+case $COMMAND in
+    modify) COMMAND="modifyproxdad" ;;
+    off) COMMAND="offproxdad" ;;
+    on) COMMAND="onproxdad" ;;
+    status) COMMAND="statusproxdad" ;;
+    where) COMMAND="whereproxdad" ;;
+    *)
+        echo "Error: Invalid command specified."
+        usage
+        ;;
+esac
+
+# Execute the specified command
+"$COMMAND"
