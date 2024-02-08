@@ -1,6 +1,19 @@
 #!/bin/bash
+# 
+# modifyproxdad script | MIT License
+# 
+# This script modify ProxDad version "v1.0" config file in a user's system.
+# 
+# 
+# It loads the current configuration, displays default values for proxy 
+# parameters, and prompts users to modify them if desired. Users input new values,
+# which the script then updates in the configuration file. Upon completion, 
+# it confirms the successful modification.
+# 
+# 
+# Copyright (c) 2024 Abhishek Singh
+# 
 
-proxdad_version="v1.0"
 proxdad_installation_path="$HOME/.proxdad"
 
 proxdad_config_file="$proxdad_installation_path/proxdad.conf"
@@ -13,7 +26,6 @@ update_config() {
 }
 
 # Display default values and ask if the user wants to change them
-echo -e "Welcome to ProxDad $proxdad_version modification\n"
 echo "Default values:"
 echo "Proxy Host: $proxy_host"
 echo "Proxy Port: $proxy_port"
