@@ -15,7 +15,7 @@ usage() {
     echo "6. Snap for managing snap packages."
     echo "7. SSH for secure shell connections."
     echo -e "\nInstalled at $proxdad_installation_path\n"
-    echo -e "Copyright (c) 2024 Abhishek Singh\n"
+    echo -e "Copyright (C) 2024 Abhishek Singh\n"
     echo "Usage: $0 [-h | --help] [-v | --version] [command]"
     echo "Options:"
     echo "  -h, --help      Display this help"

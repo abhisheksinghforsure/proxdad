@@ -14,7 +14,7 @@
 # a tool to check and report the status of a proxy configuration on the system.
 # 
 # 
-# Copyright (c) 2024 Abhishek Singh
+# Copyright (C) 2024 Abhishek Singh
 # 
 
 # Check if proxy details is applied to environment

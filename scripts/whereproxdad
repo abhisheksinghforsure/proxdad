@@ -10,7 +10,7 @@
 # of access for future reference.
 # 
 # 
-# Copyright (c) 2024 Abhishek Singh
+# Copyright (C) 2024 Abhishek Singh
 # 
 
 proxdad_installation_path="$HOME/.proxdad"
