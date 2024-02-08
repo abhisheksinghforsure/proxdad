@@ -30,7 +30,7 @@ usage() {
     echo "- SSH for secure shell connections."
     echo -e "\nInstalled at $proxdad_installation_path\n"
     echo -e "Copyright (C) 2024 Abhishek Singh\n"
-    echo "Usage: $0 [-h | --help] [-v | --version] [command]"
+    echo "Usage: $(basename $0) [-h | --help] [-v | --version] [command]"
     echo "Options:"
     echo "  -h, --help      Display this help"
     echo "  -v, --version   Display version information"
@@ -48,7 +48,7 @@ usage() {
 
 # Define version function
 version() {
-    echo "$(basename $0) version 1.0"
+    echo "$(basename $0) $proxdad_version"
     exit 0
 }
 
@@ -70,7 +70,7 @@ done
 
 # Check if command argument is provided
 if [ -z "$COMMAND" ]; then
-    echo "Error: No command specified."
+    echo -e "Error: No command specified.\n"
     usage
 fi
 
@@ -82,7 +82,7 @@ case $COMMAND in
     status) COMMAND="statusproxdad" ;;
     where) COMMAND="whereproxdad" ;;
     *)
-        echo "Error: Invalid command specified."
+        echo -e "Error: Invalid command specified.\n"
         usage
         ;;
 esac
