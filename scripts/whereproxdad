@@ -15,4 +15,4 @@
 
 proxdad_installation_path="$HOME/.proxdad"
 
-echo "ProxDad is INSTALLED at $proxdad_installation_path"
+echo "ProxDad is installed at $proxdad_installation_path"
