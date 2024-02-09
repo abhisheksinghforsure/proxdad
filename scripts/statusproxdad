@@ -17,43 +17,22 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Check if the script is run by root
-if [ "$(id -u)" = "0" ]; then
-    echo "DON'T run as root."
+libproxdad_path="./lib/libproxdad"
+
+if [ -f "$libproxdad_path" ]; then
+    source "$libproxdad_path"
+else
+    echo "Error: 'libproxdad' not found."
     exit 1
 fi
 
-# Check if proxy details is applied to environment
-is_proxdad_on() {
-    if grep -q "http_proxy" "/etc/environment"; then
-        return 0  # Yes, ProxDad is ON
-    else
-        return 1  # No, ProxDad is OFF
-    fi
-}
+prevent_root_execution
 
-get_proxdad_status() {
-    if is_proxdad_on; then
-        # Get proxy details from environment variables
-        proxy_var=$(grep -E "http_proxy" "/etc/environment")
+proxdad_status=$(get_proxdad_status)
 
-        # Extract host and port using awk
-        proxy_host=$(echo "$proxy_var" | awk -F '[@:]' '{print $4}')
-        proxy_port=$(echo "$proxy_var" | awk -F '[@:]' '{print $5}')
-
-        echo "$proxy_host:$proxy_port"
-    fi
-}
-
-# Check if the script is being executed directly
-if [ "$0" = "$BASH_SOURCE" ]; then
-    # The script is executed directly, so call get_proxy_details
-    proxdad_status=$(get_proxdad_status)
-
-    if [ -n "$proxdad_status" ]; then
-        echo "$proxdad_status"
-        echo "ProxDad is ON"
-    else
-        echo "ProxDad is OFF"
-    fi
+if [ -n "$proxdad_status" ]; then
+    echo "$proxdad_status"
+    echo "ProxDad is ON"
+else
+    echo "ProxDad is OFF"
 fi
