@@ -64,6 +64,7 @@ chmod +x -R "$proxdad_installation_path/scripts"
 # Add ProxDad directory to the PATH variable
 echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
+echo "export PATH=\$PATH:$proxdad_installation_path/lib" >> "$HOME/.bashrc"
 echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 
 # ProxDad 
