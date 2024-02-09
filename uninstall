@@ -16,6 +16,12 @@
 # Copyright (C) 2024 Abhishek Singh
 #
 
+# Check if the script is run by root
+if [ "$(id -u)" = "0" ]; then
+    echo "DON'T run as root."
+    exit 1
+fi
+
 proxdad_version="v1.0"
 proxdad_installation_path="$HOME/.proxdad"
 

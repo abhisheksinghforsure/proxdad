@@ -20,16 +20,15 @@
 # Copyright (C) 2024 Abhishek Singh
 #
 
-proxdad_version="v1.0"
-proxdad_installation_path="$HOME/.proxdad"
-
-proxdad_config_file="$proxdad_installation_path/proxdad.conf"
-
 # Check if the script is run by root
 if [ "$(id -u)" = "0" ]; then
     echo "DON'T run as root."
     exit 1
 fi
+
+proxdad_version="v1.0"
+proxdad_installation_path="$HOME/.proxdad"
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
 
 # Check if ProxDad is already installed
 if [ -d "$proxdad_installation_path" ]; then
