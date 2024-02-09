@@ -16,17 +16,16 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Check if the script is run by root
-if [ "$(id -u)" = "0" ]; then
-    echo "DON'T run as root."
+libproxdad_path="./lib/libproxdad"
+
+if [ -f "$libproxdad_path" ]; then
+    source "$libproxdad_path"
+else
+    echo "Error: 'libproxdad' not found."
     exit 1
 fi
 
-proxdad_installation_path="$HOME/.proxdad"
-proxdad_config_file="$proxdad_installation_path/proxdad.conf"
-proxdad_status="$proxdad_installation_path/scripts/statusproxdad"
-
-source "$proxdad_status"
+prevent_root_execution
 
 # Check ProxDad status
 if ! is_proxdad_on; then
