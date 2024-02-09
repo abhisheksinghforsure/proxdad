@@ -55,6 +55,9 @@ mkdir -p "$proxdad_installation_path"
 # Copy the scripts to the destination folder
 cp -r "$INSTALL_SCRIPT_PATH/scripts" "$proxdad_installation_path"
 
+# Copy the lib to the destination folder
+cp -r "$INSTALL_SCRIPT_PATH/lib" "$proxdad_installation_path"
+
 # Give executable permissions to the scripts
 chmod +x -R "$proxdad_installation_path/scripts"
 
