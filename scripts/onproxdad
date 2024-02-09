@@ -93,3 +93,5 @@ fi
 
 # Display a message indicating success
 echo "ProxDad is turned ON"
+
+exit 0
