@@ -13,12 +13,10 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Check if the script is run by root
-if [ "$(id -u)" = "0" ]; then
-    echo "DON'T run as root."
+if ! source libproxdad; then
     exit 1
 fi
 
-proxdad_installation_path="$HOME/.proxdad"
-
 echo "ProxDad is installed at $proxdad_installation_path"
+
+exit 0
