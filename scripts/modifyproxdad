@@ -14,18 +14,9 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Check if the script is run by root
-if [ "$(id -u)" = "0" ]; then
-    echo "DON'T run as root."
+if ! source libproxdad; then
     exit 1
 fi
-
-proxdad_installation_path="$HOME/.proxdad"
-proxdad_config_file="$proxdad_installation_path/proxdad.conf"
-proxdad_status="$proxdad_installation_path/scripts/statusproxdad"
-
-source "$proxdad_config_file"
-source "$proxdad_status"
 
 # Check ProxDad status
 if is_proxdad_on; then
@@ -35,6 +26,9 @@ fi
 
 # Get sudo permission for nothing
 sudo -v
+
+# Source proxdad config file to imported proxy variables
+source "$proxdad_config_file"
 
 # Function to update variables in config file
 update_config() {
