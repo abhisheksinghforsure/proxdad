@@ -17,16 +17,9 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-libproxdad_path="./lib/libproxdad"
-
-if [ -f "$libproxdad_path" ]; then
-    source "$libproxdad_path"
-else
-    echo "Error: 'libproxdad' not found."
+if ! source libproxdad; then
     exit 1
 fi
-
-prevent_root_execution
 
 # Check ProxDad status
 if is_proxdad_on; then
