@@ -42,3 +42,5 @@ get_proxdad_status() {
         echo "$proxy_host:$proxy_port"
     fi
 }
+
+prevent_root_execution
