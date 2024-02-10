@@ -16,16 +16,9 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-libproxdad_path="./lib/libproxdad"
-
-if [ -f "$libproxdad_path" ]; then
-    source "$libproxdad_path"
-else
-    echo "Error: 'libproxdad' not found."
+if ! source libproxdad; then
     exit 1
 fi
-
-prevent_root_execution
 
 # Check ProxDad status
 if ! is_proxdad_on; then
@@ -40,14 +33,18 @@ sudo sed -i '/ftp_proxy/d' /etc/environment
 sudo sed -i '/no_proxy/d' /etc/environment
 
 # Remove proxy for apt
-sudo rm -f /etc/apt/apt.conf.d/40proxy
+if command -v git &> /dev/null; then
+    sudo rm -f /etc/apt/apt.conf.d/40proxy
+fi
 
 # Remove proxy for gnome proxy applet
-gsettings reset org.gnome.system.proxy mode
-for protocol in "http" "https" "ftp"; do
-    gsettings reset "org.gnome.system.proxy.$protocol" host
-    gsettings reset "org.gnome.system.proxy.$protocol" port
-done
+if command -v gsettings &> /dev/null; then
+    gsettings reset org.gnome.system.proxy mode
+    for protocol in "http" "https" "ftp"; do
+        gsettings reset "org.gnome.system.proxy.$protocol" host
+        gsettings reset "org.gnome.system.proxy.$protocol" port
+    done
+fi
 
 # Remove proxy for Git
 if command -v git &> /dev/null; then
@@ -68,7 +65,9 @@ if command -v snap &> /dev/null; then
 fi
 
 # Remove proxy for ssh
-sed -i '/^ *ProxyCommand /d' ~/.ssh/config
+if command -v ssh &> /dev/null; then
+    sed -i '/^ *ProxyCommand /d' ~/.ssh/config
+fi
 
 # Display a message indicating success
 echo "ProxDad is turned OFF"
