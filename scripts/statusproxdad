@@ -24,8 +24,8 @@ fi
 proxdad_status=$(get_proxdad_status)
 
 if [ -n "$proxdad_status" ]; then
-    echo "$proxdad_status"
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is \e[1;32mON\e[0m"
+    echo "$proxdad_status"
 else
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is \e[1;31mOFF\e[0m"
 
