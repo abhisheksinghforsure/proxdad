@@ -20,9 +20,11 @@
 # Copyright (C) 2024 Abhishek Singh
 #
 
-libproxdad_path="./lib/libproxdad"
+# Get the absolute path of the install script
+INSTALL_SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "$libproxdad_path"
+# Get the absolute path of the libproxdad script
+libproxdad_path="$INSTALL_SCRIPT_PATH/lib/libproxdad"
 
 if ! source $libproxdad_path; then
     exit 1
@@ -42,9 +44,6 @@ fi
 
 # Get sudo permission for nothing
 sudo -v
-
-# Get the absolute path of the install script
-INSTALL_SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Create the destination folder
 mkdir -p "$proxdad_installation_path"
