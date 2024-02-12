@@ -20,7 +20,8 @@ fi
 
 # Check ProxDad status
 if is_proxdad_on; then
-    echo "ProxDad is currently ON. You need to turn it off in order to modify it."
+    echo -e "\e[1;32m\u25CF\e[0m ProxDad is \e[1;32mON\e[0m"
+    echo -e "Turn it off in order to modify it. Use 'offproxdad' command to turn it off"
     exit 1
 fi
 
