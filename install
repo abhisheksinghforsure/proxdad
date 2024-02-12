@@ -26,8 +26,6 @@ INSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 # Get the absolute path of the libproxdad script
 libproxdad_path="$INSTALL_SCRIPT_PATH/lib/libproxdad"
 
-echo "$libproxdad_path"
-
 if ! source $libproxdad_path; then
     exit 1
 fi
@@ -92,10 +90,7 @@ else
 fi
 
 # Store proxy configuration in the config file
-echo "proxdad_version=$proxdad_version" > "$proxdad_config_file"
-echo -e "proxdad_installation_path=$proxdad_installation_path\n" >> "$proxdad_config_file"
-
-echo "proxy_host=$proxy_host" >> "$proxdad_config_file"
+echo "proxy_host=$proxy_host" > "$proxdad_config_file"
 echo "proxy_port=$proxy_port" >> "$proxdad_config_file"
 echo "proxy_username=$proxy_username" >> "$proxdad_config_file"
 echo "proxy_password=$proxy_password" >> "$proxdad_config_file"
