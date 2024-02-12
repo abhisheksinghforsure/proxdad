@@ -62,6 +62,6 @@ update_config "proxy_port" "$proxy_port"
 update_config "proxy_username" "$proxy_username"
 update_config "proxy_password" "$proxy_password"
 
-echo "ProxDad has succesfully MODIFIED $proxdad_config_file"
+echo "ProxDad has succesfully modified $proxdad_config_file"
 
 exit 0
