@@ -16,7 +16,7 @@ is_user_root() {
 # Function to prevent root user from executing a script
 prevent_root_execution() {
     if is_user_root; then
-        echo "Don't run this script as root user"
+        echo "\e[1;31mDon't run this script as root user\e[0m"
         exit 1
     fi
 }
