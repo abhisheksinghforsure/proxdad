@@ -2,11 +2,11 @@
 #
 # uninstall script | MIT License
 #
-# This script uninstalls ProxDad version "v1.0" from a user's system. 
+# This script uninstalls ProxDad from user's home directory. 
 #
 #
-# It first checks if ProxDad is already uninstalled and if it's currently running.
-# If not running, it prompts the user for confirmation to uninstall. 
+# It first checks if ProxDad is already uninstalled and if it's currently ON.
+# If not ON, it prompts the user for confirmation to uninstall. 
 # Upon confirmation, it removes the ProxDad installation directory /.proxdad and 
 # its contents, then eliminates references to ProxDad in the user's .bashrc 
 # file. Afterward, it informs the user of successful uninstallation and sources 
