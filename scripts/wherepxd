@@ -13,7 +13,7 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-if ! source libpxd; then
+if ! source pxdutils; then
     exit 1
 fi
 

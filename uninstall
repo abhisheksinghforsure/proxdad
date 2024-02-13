@@ -19,10 +19,10 @@
 # Get the absolute path of the uninstall script
 UNINSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 
-# Get the absolute path of the libpxd script
-libpxd_path="$UNINSTALL_SCRIPT_PATH/lib/libpxd"
+# Get the absolute path of the pxdutils script
+pxdutils_path="$UNINSTALL_SCRIPT_PATH/include/pxdutils"
 
-if ! source $libpxd_path; then
+if ! source $pxdutils_path; then
     exit 1
 fi
 

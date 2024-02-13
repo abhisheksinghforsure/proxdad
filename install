@@ -22,10 +22,10 @@
 # Get the absolute path of the install script
 INSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 
-# Get the absolute path of the libpxd script
-libpxd_path="$INSTALL_SCRIPT_PATH/lib/libpxd"
+# Get the absolute path of the pxdutils script
+pxdutils_path="$INSTALL_SCRIPT_PATH/include/pxdutils"
 
-if ! source $libpxd_path; then
+if ! source $pxdutils_path; then
     exit 1
 fi
 
@@ -43,15 +43,15 @@ mkdir -p "$proxdad_installation_path"
 # Copy the scripts to the destination folder
 cp -r "$INSTALL_SCRIPT_PATH/scripts" "$proxdad_installation_path"
 
-# Copy the lib to the destination folder
-cp -r "$INSTALL_SCRIPT_PATH/lib" "$proxdad_installation_path"
+# Copy the include folder to the destination folder
+cp -r "$INSTALL_SCRIPT_PATH/include" "$proxdad_installation_path"
 
 # Give executable permissions to the scripts
 chmod +x -R "$proxdad_installation_path/scripts"
 
 # Add ProxDad directory to the PATH variable
 echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
-echo "export PATH=\$PATH:$proxdad_installation_path/lib" >> "$HOME/.bashrc"
+echo "export PATH=\$PATH:$proxdad_installation_path/include" >> "$HOME/.bashrc"
 echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
 echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 
