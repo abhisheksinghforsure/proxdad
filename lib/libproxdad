@@ -4,18 +4,9 @@ proxdad_version="v1.0"
 proxdad_installation_path="$HOME/.proxdad"
 proxdad_config_file="$proxdad_installation_path/proxdad.conf"
 
-# Function to check if the user is root
-is_user_root() {
-    if [[ $EUID -eq 0 ]]; then
-        return 0    # Yes, User is root
-    else
-        return 1    # No, User is not root
-    fi
-}
-
 # Function to prevent root user from executing a script
 prevent_root_execution() {
-    if is_user_root; then
+    if [[ $EUID -eq 0 ]]; then
         echo -e "\e[1;31mDon't run this script as root user\e[0m"
         exit 1
     fi
