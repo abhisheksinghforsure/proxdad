@@ -47,7 +47,7 @@ cp -r "$INSTALL_SCRIPT_PATH/scripts" "$proxdad_installation_path"
 chmod +x -R "$proxdad_installation_path/scripts"
 
 # Copy the include folder to the destination folder
-cp -r "$INSTALL_SCRIPT_PATH/include/*" "$proxdad_installation_path"
+cp -r "$INSTALL_SCRIPT_PATH/include/"* "$proxdad_installation_path/scripts"
 
 # Add ProxDad directory to the PATH variable
 echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
