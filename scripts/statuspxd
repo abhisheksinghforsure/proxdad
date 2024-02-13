@@ -1,6 +1,6 @@
 #!/bin/bash
 # 
-# statusproxdad script | MIT License
+# statuspxd script | MIT License
 # 
 # This script checks whether proxy details are applied to the system environment.
 # 

@@ -77,11 +77,11 @@ fi
 
 # Convert shortened command names to full command names
 case $COMMAND in
-    modify) COMMAND="modifyproxdad" ;;
-    off) COMMAND="offproxdad" ;;
-    on) COMMAND="onproxdad" ;;
-    status) COMMAND="statusproxdad" ;;
-    where) COMMAND="whereproxdad" ;;
+    modify) COMMAND="modifypxd" ;;
+    off) COMMAND="offpxd" ;;
+    on) COMMAND="onpxd" ;;
+    status) COMMAND="statuspxd" ;;
+    where) COMMAND="wherepxd" ;;
     *)
         echo -e "Error: Invalid command specified.\n"
         usage

@@ -49,19 +49,19 @@ chmod +x install uninstall
 2. To turn ON ProxDad, type the following command:
 
 ```bash
-onproxdad
+onpxd
 ```
 
 3. To turn OFF ProxDad, type the following command:
 
 ```bash
-offproxdad
+offpxd
 ```
 
 4. To check whether ProxDad is ON or OFF, type the following command:
 
 ```bash
-statusproxdad
+statuspxd
 ```
 
 For more detailed usage instructions and options, refer to the documentation in the `docs` directory.
