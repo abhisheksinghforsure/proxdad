@@ -2,19 +2,18 @@
 #
 # install script | MIT License
 #
-# This script installs ProxDad version "v1.0" to a user's system. 
+# This script installs ProxDad to user's home directory.
 #
 #
 # It first checks for root privileges to ensure it's not run with elevated 
-# permissions. If ProxDad is already installed, it prompts the user to confirm 
-# whether they want to reinstall it. Next, it copies scripts to the user's 
-# home directory inside /.proxdad and gives them executable permission. It then
-# adds the /.proxdad directory to the user's PATH variable for easy access. 
-# It prompts the user to either accept default proxy settings or input custom
-# ones, securely storing the information in /.proxdad/proxdad.conf configuration
-# file. Additionally, it checks for the presence of 'ncat' utility and installs 
-# it if necessary. Finally, it displays a success message upon completing the
-# installation process.
+# permissions. If ProxDad is already installed, it informs the user. Next,
+# it copies scripts to the user's home directory inside /.proxdad and gives 
+# them executable permission. It then adds the /.proxdad directory to the 
+# user's PATH variable for easy access. It prompts the user to either accept 
+# default proxy settings or input custom ones, securely storing the information
+# in /.proxdad/proxdad.conf configuration file. Additionally, it checks for 
+# the presence of 'ncat' utility and installs it if necessary. Finally, 
+# it displays a success message upon completing the installation process.
 #
 #
 # Copyright (C) 2024 Abhishek Singh
@@ -32,14 +31,7 @@ fi
 
 # Check if ProxDad is already installed
 if [ -d "$proxdad_installation_path" ]; then
-    echo "ProxDad $proxdad_version is already installed at $proxdad_installation_path"
-    read -p "Do you want to reinstall it? [y/N]: " reinstall_choice
-    if [ "${reinstall_choice,,}" != "y" ] && [ "${reinstall_choice,,}" != "yes" ]; then
-        echo "Exiting without reinstalling."
-        exit 0
-    else
-        echo "Reinstalling ProxDad $proxdad_version"
-    fi
+    echo "ProxDad is already installed"
 fi
 
 # Get sudo permission for nothing
