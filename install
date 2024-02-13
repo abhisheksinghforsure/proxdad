@@ -22,10 +22,10 @@
 # Get the absolute path of the install script
 INSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 
-# Get the absolute path of the libproxdad script
-libproxdad_path="$INSTALL_SCRIPT_PATH/lib/libproxdad"
+# Get the absolute path of the libpxd script
+libpxd_path="$INSTALL_SCRIPT_PATH/lib/libpxd"
 
-if ! source $libproxdad_path; then
+if ! source $libpxd_path; then
     exit 1
 fi
 
