@@ -22,10 +22,10 @@
 # Get the absolute path of the install script
 INSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 
-# Get the absolute path of the pxdutils script
-pxdutils_path="$INSTALL_SCRIPT_PATH/include/pxdutils"
+# Get the absolute path of the _utilspxd script
+_utilspxd_path="$INSTALL_SCRIPT_PATH/include/_utilspxd"
 
-if ! source $pxdutils_path; then
+if ! source $_utilspxd_path; then
     exit 1
 fi
 
