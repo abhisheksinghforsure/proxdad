@@ -17,18 +17,16 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-if ! source _utilspxd; then
-    exit 1
-fi
+if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
+    # Extract host and port using awk
+    proxy_host=$(awk -F '[@:]' '{print $4}' <<< "$proxy_var")
+    proxy_port=$(awk -F '[@:]' '{print $5}' <<< "$proxy_var")
 
-proxdad_status=$(get_proxdad_status)
-
-if [ -n "$proxdad_status" ]; then
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is \e[1;32mON\e[0m"
-    echo "$proxdad_status"
+    echo -e "   Proxy host: $proxy_host"
+    echo -e "   Porxy port: $proxy_port"
 else
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is \e[1;31mOFF\e[0m"
-
 fi
 
 exit 0
