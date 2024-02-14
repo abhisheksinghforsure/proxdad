@@ -29,7 +29,6 @@ usage() {
     echo "  off             Turn off Proxdad"
     echo "  on              Turn on Proxdad"
     echo "  status          Get the status of Proxdad"
-    echo "  where           Show the location of Proxdad"
     echo -e "\nProxDad $proxdad_version installed at $proxdad_installation_path"
     echo -e "\nProxDad settings specified in $proxdad_config_file"
     echo -e "\nFor bug reports, please visit: \nhttps://github.com/abhisheksinghforsure/proxdad/issues"
@@ -72,7 +71,6 @@ case $COMMAND in
     off) COMMAND="offpxd" ;;
     on) COMMAND="onpxd" ;;
     status) COMMAND="statuspxd" ;;
-    where) COMMAND="wherepxd" ;;
     *)
         echo -e "Error: Invalid command specified.\n"
         usage
