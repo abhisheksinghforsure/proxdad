@@ -2,13 +2,13 @@
 #
 # proxdad script | MIT License
 #
-# This script introduce ProxDad version "v1.0" to a user. 
+# This script introduce ProxDad to a user. 
 #
 #
 # It streamlines proxy configuration on Linux. It provides commands for modifying, 
-# activating, deactivating, checking status, and locating its installation 
-# directory. Users can access usage and version information easily, with options 
-# for reporting bugs via GitHub, ensuring efficient system management.
+# turning on, turning off and checking status of it. Users can access usage and 
+# version information easily, with options for reporting bugs via GitHub, ensuring
+# efficient system management.
 #
 #
 # Copyright (C) 2024 Abhishek Singh
