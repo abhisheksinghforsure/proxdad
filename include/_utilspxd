@@ -21,16 +21,4 @@ is_proxdad_on() {
     fi
 }
 
-# Function to get ProxDad proxy status
-get_proxdad_status() {
-    # Check if http_proxy is set in /etc/environment and retrieve proxy details
-    if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
-        # Extract host and port using awk
-        proxy_host=$(awk -F '[@:]' '{print $4}' <<< "$proxy_var")
-        proxy_port=$(awk -F '[@:]' '{print $5}' <<< "$proxy_var")
-
-        echo "$proxy_host:$proxy_port"
-    fi
-}
-
 prevent_root_execution
