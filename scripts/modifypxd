@@ -21,7 +21,8 @@ fi
 # Check ProxDad status
 if is_proxdad_on; then
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is \e[1;32mON\e[0m"
-    echo -e "     Turn it off in order to modify it. Use 'offpxd' command to turn it off"
+    echo "     Turn it off in order to modify it."
+    echo "     Use 'offpxd' command to turn it off."
     exit 1
 fi
 
