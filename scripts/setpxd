@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# set_proxdad.sh | MIT License
+# setpxd | MIT License
 #
 # This script sets ProxDad configurations.
 #
@@ -44,7 +44,7 @@ update_config() {
         esac
     done
 
-    echo "ProxDad has successfully modified $proxdad_config_file"
+    exit 0
 }
 
 # Parse command-line options
