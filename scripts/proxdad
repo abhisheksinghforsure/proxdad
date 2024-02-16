@@ -27,7 +27,7 @@ Commands:
   on                    Turn on ProxDad
   off                   Turn off ProxDad
   restart               Restart ProxDad
-  status                Get the status of ProxDad
+  status                Get status of ProxDad
   set                   Set ProxDad settings
     -i <host>           Set proxy host
     -p <port>           Set proxy port
