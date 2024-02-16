@@ -1,81 +1,68 @@
 #!/bin/bash
 #
-# proxdad script | MIT License
+# proxdad.sh | MIT License
 #
-# This script introduce ProxDad to a user. 
+# This script introduces ProxDad to a user. 
 #
-#
-# It streamlines proxy configuration on Linux. It provides commands for modifying, 
-# turning on, turning off and checking status of it. Users can access usage and 
-# version information easily, with options for reporting bugs via GitHub, ensuring
-# efficient system management.
-#
+# It streamlines proxy configuration on Linux, providing commands for setting,
+# turning on, turning off, and checking the status of ProxDad. Users can access 
+# usage and version information easily, with options for reporting bugs via GitHub, 
+# ensuring efficient system management.
 #
 # Copyright (C) 2024 Abhishek Singh
 #
 
-if ! source _utilspxd; then
-    exit 1
-fi
+source _utilspxd || exit 1
 
-# Define usage function
+# Define usage and version information
 usage() {
-    echo "Usage: $(basename $0) [-h | --help] [-v | --version] [command]"
-    echo -e "\nOptions:"
-    echo "  -h, --help      Display this help"
-    echo "  -v, --version   Display version information"
-    echo -e "\nCommands:"
-    echo "  modify          Modify Proxdad settings"
-    echo "  off             Turn off Proxdad"
-    echo "  on              Turn on Proxdad"
-    echo "  status          Get the status of Proxdad"
-    echo -e "\nProxDad $proxdad_version installed at $proxdad_installation_path"
-    echo -e "\nProxDad settings specified in $proxdad_config_file"
-    echo -e "\nFor bug reports, please visit: \nhttps://github.com/abhisheksinghforsure/proxdad/issues"
-    echo -e "\nThis is free software; see the license for copying conditions. There is NO"
-    echo "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    cat << EOF
+Usage: $(basename "$0") [-h | --help] [-v | --version] [command]
+
+Options:
+  -h, --help      Display this help
+  -v, --version   Display version information
+
+Commands:
+  on                Turn on ProxDad
+  off               Turn off ProxDad
+  status            Get the status of ProxDad
+  set               Set ProxDad settings
+      -h              - Set proxy host
+      -p              - Set proxy port
+      -u              - Set proxy username
+      -w              - Set proxy password
+
+ProxDad $proxdad_version installed at $proxdad_installation_path
+ProxDad settings specified in $proxdad_config_file
+
+For bug reports, please visit: 
+https://github.com/abhisheksinghforsure/proxdad/issues
+
+This is free software; see the license for copying conditions. There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+EOF
     exit 1
 }
 
-# Define version function
 version() {
-    echo "$(basename $0) $proxdad_version"
+    echo "$(basename "$0") $proxdad_version"
     exit 0
 }
 
 # Parse command-line options
-while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        -h|--help)
-            usage
-            ;;
-        -v|--version)
-            version
-            ;;
-        *)  # If no options match, consider it as a command
-            COMMAND="$1"
-            ;;
-    esac
-    shift
-done
+[[ $# -eq 0 ]] && { echo "Error: No command specified."; usage; }
 
-# Check if command argument is provided
-if [ -z "$COMMAND" ]; then
-    echo -e "Error: No command specified.\n"
-    usage
-fi
-
-# Convert shortened command names to full command names
-case $COMMAND in
-    modify) COMMAND="modifypxd" ;;
-    off) COMMAND="offpxd" ;;
-    on) COMMAND="onpxd" ;;
-    status) COMMAND="statuspxd" ;;
-    *)
-        echo -e "Error: Invalid command specified.\n"
-        usage
+case $1 in
+    -h|--help) usage ;;
+    -v|--version) version ;;
+    on) onpxd ;;
+    off) offpxd ;;
+    status) statuspxd ;;
+    set)
+        shift
+        setpxd "$@"
+        exit
         ;;
+    *) echo "Error: Invalid command specified."; usage ;;
 esac
-
-# Execute the specified command
-"$COMMAND"
