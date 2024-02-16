@@ -20,18 +20,18 @@ usage() {
 Usage: $(basename "$0") [-h | --help] [-v | --version] [command]
 
 Options:
-  -h, --help      Display this help
-  -v, --version   Display version information
+  -h, --help            Display this help
+  -v, --version         Display version information
 
 Commands:
-  on                Turn on ProxDad
-  off               Turn off ProxDad
-  status            Get the status of ProxDad
-  set               Set ProxDad settings
-      -h              - Set proxy host
-      -p              - Set proxy port
-      -u              - Set proxy username
-      -w              - Set proxy password
+  on                    Turn on ProxDad
+  off                   Turn off ProxDad
+  status                Get the status of ProxDad
+  set                   Set ProxDad settings
+      -h <host>           Set proxy host
+      -p <port>           Set proxy port
+      -u <username>       Set proxy username
+      -w <password>       Set proxy password
 
 ProxDad $proxdad_version installed at $proxdad_installation_path
 ProxDad settings specified in $proxdad_config_file
@@ -59,10 +59,6 @@ case $1 in
     on) onpxd ;;
     off) offpxd ;;
     status) statuspxd ;;
-    set)
-        shift
-        setpxd "$@"
-        exit
-        ;;
+    set) setpxd "$@" ;;
     *) echo "Error: Invalid command specified."; usage ;;
 esac
