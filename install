@@ -25,9 +25,7 @@ INSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 # Get the absolute path of the _utilspxd script
 _utilspxd_path="$INSTALL_SCRIPT_PATH/include/_utilspxd"
 
-if ! source $_utilspxd_path; then
-    exit 1
-fi
+source $_utilspxd_path || exit 1
 
 # Check if ProxDad is already installed
 if [ -d "$proxdad_installation_path" ]; then
