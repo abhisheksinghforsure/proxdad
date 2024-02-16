@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# set_proxdad.sh | MIT License
+#
+# This script sets ProxDad configurations.
+#
+# Copyright (C) 2024 Abhishek Singh
+#
+
+source _utilspxd || exit 1
+
+# Function to update config file
+update_config() {
+    source "$proxdad_config_file"
+
+    # Update config based on arguments
+    if [[ $# -eq 0 ]]; then
+        echo "Error: No arguments provided."
+        exit 1
+    fi
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -h)
+                sed -i "s/^proxy_host=.*/proxy_host=$2/" "$proxdad_config_file"
+                shift 2
+                ;;
+            -p)
+                sed -i "s/^proxy_port=.*/proxy_port=$2/" "$proxdad_config_file"
+                shift 2
+                ;;
+            -u)
+                sed -i "s/^proxy_username=.*/proxy_username=$2/" "$proxdad_config_file"
+                shift 2
+                ;;
+            -w)
+                sed -i "s/^proxy_password=.*/proxy_password=$2/" "$proxdad_config_file"
+                shift 2
+                ;;
+            *)
+                echo "Error: Invalid option specified."
+                exit 1
+                ;;
+        esac
+    done
+
+    echo "ProxDad has successfully modified $proxdad_config_file"
+}
+
+# Parse command-line options
+update_config "$@"
