@@ -16,9 +16,7 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-if ! source _utilspxd; then
-    exit 1
-fi
+source _utilspxd || exit 1
 
 # Check ProxDad status
 if ! is_proxdad_on; then
