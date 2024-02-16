@@ -64,6 +64,12 @@ offpxd
 statuspxd
 ```
 
+5. To check help for ProxDad, type the following command:
+
+```bash
+proxdad -h
+```
+
 For more detailed usage instructions and options, refer to the documentation in the `docs` directory.
 
 ## Compatibility
