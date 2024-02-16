@@ -17,9 +17,7 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-if ! source _utilspxd; then
-    exit 1
-fi
+source _utilspxd || exit 1
 
 # Check ProxDad status
 if is_proxdad_on; then
@@ -27,28 +25,26 @@ if is_proxdad_on; then
     exit 0
 fi
 
-# Check if proxdad.conf exists
-if [ -f "$proxdad_config_file" ]; then
-    source "$proxdad_config_file"
-else
-    echo -e "\e[1;31mError: proxdad.conf not found. INSTALL ProxDad again.\e[0m"
-    exit 1
-fi
+source $proxdad_config_file || exit 1
 
 # Backup of environment
 sudo cp /etc/environment /etc/environment.bak
 
 # Set proxy environment variables for system-wide use
-echo -e "export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}" | sudo tee -a /etc/environment > /dev/null
-echo -e "export https_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}" | sudo tee -a /etc/environment > /dev/null
-echo -e "export ftp_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}" | sudo tee -a /etc/environment > /dev/null
-echo -e "export no_proxy=localhost,127.0.0.1" | sudo tee -a /etc/environment > /dev/null
+sudo cat >> /etc/environment << EOF
+export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
+export https_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
+export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
+export no_proxy=localhost,127.0.0.1
+EOF
 
 # Set proxy for apt (package manager)
 if command -v apt &> /dev/null; then
-    echo -e "Acquire::http::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}/\";" | sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null
-    echo -e "Acquire::https::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}/\";" | sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null
-    echo -e "Acquire::ftp::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}/\";" | sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null
+    sudo cat >> /etc/apt/apt.conf.d/40proxy << EOF
+Acquire::http::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
+Acquire::https::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
+Acquire::ftp::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
+EOF
 fi
 
 # Set proxy for gnome proxy applet
