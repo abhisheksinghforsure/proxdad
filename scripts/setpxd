@@ -9,19 +9,38 @@
 
 source _utilspxd || exit 1
 
+# Function to display usage information
+usage() {
+    cat << EOF
+Usage: $(basename "$0") [options]
+
+Options:
+  -h, --help            Display this help
+
+  -i <host>             Set proxy host
+  -p <port>             Set proxy port
+  -u <username>         Set proxy username
+  -w <password>         Set proxy password
+
+Examples:
+  $(basename "$0") -i 172.31.102.29 -p 3128
+  $(basename "$0") -i 172.31.102.29 -p 3128 -u edcguest -w edcguest
+
+ProxDad settings are specified in $proxdad_config_file
+EOF
+    exit 0
+}
+
 # Function to update config file
-update_config() {
+update_proxdad_config_file() {
     source "$proxdad_config_file"
 
     # Update config based on arguments
-    if [[ $# -eq 0 ]]; then
-        echo "Error: No arguments provided."
-        exit 1
-    fi
+    [[ $# -eq 0 ]] && { usage; }
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            -h)
+            -i)
                 sed -i "s/^proxy_host=.*/proxy_host=$2/" "$proxdad_config_file"
                 shift 2
                 ;;
@@ -48,4 +67,4 @@ update_config() {
 }
 
 # Parse command-line options
-update_config "$@"
+update_proxdad_config_file "$@"
