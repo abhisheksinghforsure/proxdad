@@ -31,16 +31,16 @@ source $proxdad_config_file || exit 1
 sudo cp /etc/environment /etc/environment.bak
 
 # Set proxy environment variables for system-wide use
-sudo cat >> /etc/environment << EOF
+sudo tee -a /etc/environment > /dev/null << EOF
 export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
 export https_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
-export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
+export ftp_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
 export no_proxy=localhost,127.0.0.1
 EOF
 
 # Set proxy for apt (package manager)
 if command -v apt &> /dev/null; then
-    sudo cat >> /etc/apt/apt.conf.d/40proxy << EOF
+sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null << EOF
 Acquire::http::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
 Acquire::https::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
 Acquire::ftp::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
