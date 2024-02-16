@@ -33,7 +33,7 @@ EOF
 
 # Function to update config file
 update_proxdad_config_file() {
-    source "$proxdad_config_file"
+    source $proxdad_config_file || exit 1
 
     # Update config based on arguments
     [[ $# -eq 0 ]] && { usage; }
