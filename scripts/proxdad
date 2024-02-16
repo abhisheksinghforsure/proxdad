@@ -26,6 +26,7 @@ Options:
 Commands:
   on                    Turn on ProxDad
   off                   Turn off ProxDad
+  restart               Restart ProxDad
   status                Get the status of ProxDad
   set                   Set ProxDad settings
     -i <host>           Set proxy host
@@ -58,6 +59,7 @@ case $1 in
     -v|--version) version ;;
     on) onpxd ;;
     off) offpxd ;;
+    restart) restartpxd ;;
     status) statuspxd ;;
     set) shift; setpxd "$@" ;;
     *) 
