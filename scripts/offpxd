@@ -21,14 +21,11 @@ source _utilspxd || exit 1
 # Check ProxDad status
 if ! is_proxdad_on; then
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is already \e[1;31mOFF\e[0m"
-    exit 0
+    exit 1
 fi
 
 # Remove proxy environment variables
-sudo sed -i '/http_proxy/d' /etc/environment
-sudo sed -i '/https_proxy/d' /etc/environment
-sudo sed -i '/ftp_proxy/d' /etc/environment
-sudo sed -i '/no_proxy/d' /etc/environment
+sudo sed -i '/_proxy/d' /etc/environment
 
 # Remove proxy for apt
 if command -v git &> /dev/null; then
@@ -69,3 +66,5 @@ fi
 
 # Display a message indicating success
 echo -e "\e[1;31m\u25CF\e[0m ProxDad is turned \e[1;31mOFF\e[0m"
+
+exit 0
