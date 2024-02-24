@@ -12,7 +12,7 @@ source _cmmnpxd || exit 1
 
 set_proxies
 
-sudo sed -i "/^export \(http\|https\|ftp\)_proxy=/s|=.*|=\"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\"|; /^export no_proxy=/s|=.*|=\"localhost,127.0.0.1\"|" /etc/environment
+sudo sed -i "/^export \(http\|https\|ftp\)_proxy=/s|=.*|=\"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\"|" /etc/environment
 
 if command -v apt &> /dev/null; then
     sudo sh -c "echo 'Acquire::http::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";\nAcquire::https::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";\nAcquire::ftp::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";' > /etc/apt/apt.conf.d/40proxy"
