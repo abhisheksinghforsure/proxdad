@@ -30,6 +30,7 @@ source $_utilspxd_path || exit 1
 # Check if ProxDad is already installed
 if [ -d "$proxdad_installation_path" ]; then
     echo "ProxDad is already installed"
+    exit 1
 fi
 
 # Get sudo permission for nothing
