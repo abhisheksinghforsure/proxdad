@@ -2,17 +2,17 @@
 
 source _utilspxd || exit 1
 
-if is_proxdad_on; then
-    source $proxdad_config_file || exit 1
-    source _cmmnpxd || exit 1
+if ! is_proxdad_on; then
+    echo -e "\e[1;31m\u25CF\e[0m ProxDad is \e[1;31mOFF\e[0m"
+    exit 1
+fi
 
-    # Remove proxy environment variables
-    sudo sed -i '/http_proxy/d' /etc/environment
-    sudo sed -i '/https_proxy/d' /etc/environment
-    sudo sed -i '/ftp_proxy/d' /etc/environment
-    sudo sed -i '/no_proxy/d' /etc/environment
+source $proxdad_config_file || exit 1
+source _cmmnpxd || exit 1
 
-    # Set proxy environment variables for system-wide use
+set_proxies
+
+sudo sed -i '/_proxy/d' /etc/environment
 sudo tee -a /etc/environment > /dev/null << EOF
 export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
 export https_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
@@ -20,34 +20,20 @@ export ftp_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${prox
 export no_proxy=localhost,127.0.0.1
 EOF
 
-    # Remove proxy for apt
-    if command -v git &> /dev/null; then
-        sudo rm -f /etc/apt/apt.conf.d/40proxy
-    fi
-
-    # Set proxy for apt (package manager)
 if command -v apt &> /dev/null; then
-sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null << EOF
+    sudo rm -f /etc/apt/apt.conf.d/40proxy
+    sudo tee -a /etc/apt/apt.conf.d/40proxy > /dev/null << EOF
 Acquire::http::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
 Acquire::https::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
 Acquire::ftp::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
 EOF
 fi
 
-    set_proxies
-
-    # Remove proxy for ssh
-    if command -v ssh &> /dev/null; then
-        sed -i '/^ *ProxyCommand /d' ~/.ssh/config
-    fi
-
-    # Set proxy for ssh
-    if command -v ssh &> /dev/null; then
-        echo -e "ProxyCommand ncat --proxy-type http --proxy $proxy_host:$proxy_port --proxy-auth $proxy_username:$proxy_password %h %p" >> ~/.ssh/config
-    fi
-
-    echo -e "ProxDad is restarted"
-
-else
-    echo -e "\e[1;31m\u25CF\e[0m ProxDad is \e[1;31mOFF\e[0m"
+if command -v ssh &> /dev/null; then
+    sed -i '/^ *ProxyCommand /d' ~/.ssh/config
+    echo -e "ProxyCommand ncat --proxy-type http --proxy $proxy_host:$proxy_port --proxy-auth $proxy_username:$proxy_password %h %p" >> ~/.ssh/config
 fi
+
+echo -e "ProxDad is restarted"
+
+exit 0
