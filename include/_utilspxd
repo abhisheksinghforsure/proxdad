@@ -7,7 +7,7 @@ proxdad_config_file="$proxdad_installation_path/proxdad.conf"
 # Function to prevent root user from executing a script
 prevent_root_execution() {
     if [[ $EUID -eq 0 ]]; then
-        echo -e "\e[1;31mDon't run this script as root user\e[0m"
+        echo -e "\e[1;31mDon't use root privileges\e[0m"
         exit 1
     fi
 }
