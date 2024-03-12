@@ -34,7 +34,7 @@ if [ -d "$proxdad_installation_path" ]; then
 fi
 
 # Get sudo permission for nothing
-sudo -v
+sudo true
 
 # Create the destination folder
 mkdir -p "$proxdad_installation_path"
