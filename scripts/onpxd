@@ -28,8 +28,6 @@ fi
 source $proxdad_config_file || exit 1
 source _cmmnpxd || exit 1
 
-set_proxies
-
 # Backup of environment
 sudo cp /etc/environment /etc/environment.bak
 
@@ -49,6 +47,8 @@ Acquire::https::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:
 Acquire::ftp::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}";
 EOF
 fi
+
+set_proxies
 
 # Set proxy for ssh
 if command -v ssh &> /dev/null; then
