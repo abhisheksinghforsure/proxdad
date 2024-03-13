@@ -1,11 +1,11 @@
 #!/bin/bash
-#
+# 
 # proxdad | MIT License
-#
+# 
 # This script introduces ProxDad to a user. 
-#
+# 
 # Copyright (C) 2024 Abhishek Singh
-#
+# 
 
 source _utilspxd || exit 1
 
