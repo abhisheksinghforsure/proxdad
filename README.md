@@ -31,7 +31,7 @@ cd proxdad
 3. Give executable permission to the installation and uninstallation scripts:
 
 ```bash
-chmod +x install uninstall
+chmod +x install
 ```
 
 4. Run the installation script:
