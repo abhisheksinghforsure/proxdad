@@ -81,6 +81,7 @@ if ! command -v ncat &> /dev/null; then
     fi
 fi
 
+# Display success message
 echo "ProxDad has been succesfully installed at $proxdad_installation_path"
 
 exit 0
