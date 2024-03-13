@@ -12,11 +12,10 @@ source _utilspxd || exit 1
 # Define usage and version information
 usage() {
     cat << EOF
-Usage: $(basename "$0") [-h | --help] [-v | --version] [command]
+Usage: $(basename "$0") [-h | --help] [command]
 
 Options:
   -h, --help            Display this help
-  -v, --version         Display version information
 
 Commands:
   on                    Turn on ProxDad
@@ -29,7 +28,7 @@ Commands:
     -u <username>       Set proxy username
     -w <password>       Set proxy password
 
-ProxDad $proxdad_version is installed at $proxdad_installation_path
+ProxDad is installed at $proxdad_installation_path
 ProxDad settings are specified in $proxdad_config_file
 
 For bug reports, please visit: 
@@ -41,17 +40,11 @@ EOF
     exit 0
 }
 
-version() {
-    echo "$(basename "$0") $proxdad_version"
-    exit 0
-}
-
 # Parse command-line options
 [[ $# -eq 0 ]] && { usage; }
 
 case $1 in
     -h|--help) usage ;;
-    -v|--version) version ;;
     on) onpxd ;;
     off) offpxd ;;
     restart) restartpxd ;;
