@@ -13,7 +13,6 @@ source _utilspxd || exit 1
 read -p "Do you really want to uninstall ProxDad? [y/N]: " uninstall_choice
 
 if [ "${uninstall_choice,,}" != "y" ] && [ "${uninstall_choice,,}" != "yes" ]; then
-    echo "Exiting without uninstalling."
     exit 1
 fi
 
