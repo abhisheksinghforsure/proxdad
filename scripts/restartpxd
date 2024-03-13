@@ -10,7 +10,7 @@
 source _utilspxd || exit 1
 
 if ! is_proxdad_on; then
-    echo -e "\e[1;31m\u25CF\e[0m ProxDad is \e[1;31mOFF\e[0m"
+    echo -e "\e[1;31m\u25CF\e[0m ProxDad is OFF"
     exit 1
 fi
 

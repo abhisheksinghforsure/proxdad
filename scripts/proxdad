@@ -18,16 +18,16 @@ Options:
   -h, --help            Display this help
 
 Commands:
-  on                    Turn on ProxDad
-  off                   Turn off ProxDad
-  restart               Restart ProxDad
-  status                Get status of ProxDad
-  uninstall             Uninstall ProxDad
-  set                   Set ProxDad settings
-    -i <host>           Set proxy host
-    -p <port>           Set proxy port
-    -u <username>       Set proxy username
-    -w <password>       Set proxy password
+  on [onpxd]                   Turn on ProxDad
+  off [offpxd]                 Turn off ProxDad
+  restart [restartpxd]         Restart ProxDad
+  status [statuspxd]           Get status of ProxDad
+  uninstall [uninstallpxd]     Uninstall ProxDad
+  set [setpxd]                 Set ProxDad settings
+    -i <host>                  Set proxy host
+    -p <port>                  Set proxy port
+    -u <username>              Set proxy username
+    -w <password>              Set proxy password
 
 ProxDad is installed at $proxdad_installation_path
 ProxDad settings are specified in $proxdad_config_file

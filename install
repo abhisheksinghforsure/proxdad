@@ -39,10 +39,10 @@ echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 
 # Display default values and ask if the user wants to continue with them
 echo "Default values"
-echo "Proxy Host: 172.31.102.29"
-echo "Proxy Port: 3128"
-echo "Proxy Username: edcguest"
-echo "Proxy Password: edcguest"
+echo "Host: 172.31.102.29"
+echo "Port: 3128"
+echo "Username: edcguest"
+echo "Password: edcguest"
 read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
 
 # Set default values if the user presses Enter without typing anything
@@ -53,10 +53,10 @@ if [ -z "$continue_choice" ] || [ "$continue_choice" == "y" ] || [ "$continue_ch
     proxy_password="edcguest"
 else
     echo -e "\n"
-    read -p "Enter proxy host: " proxy_host
-    read -p "Enter proxy port: " proxy_port
-    read -p "Enter proxy username: " proxy_username
-    read -p "Enter proxy password: " -s proxy_password  # -s flag hides the password input
+    read -p "Enter host: " proxy_host
+    read -p "Enter port: " proxy_port
+    read -p "Enter username: " proxy_username
+    read -p "Enter password: " -s proxy_password  # -s flag hides the password input
     echo -e "\n"
 fi
 
