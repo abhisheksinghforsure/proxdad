@@ -7,11 +7,7 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Get the absolute path of the uninstall script
-UNINSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
-
-# Get the absolute path of the _utilspxd script
-_utilspxd_path="$UNINSTALL_SCRIPT_PATH/include/_utilspxd"
+_utilspxd_path="./include/_utilspxd"
 
 source $_utilspxd_path || exit 1
 

@@ -7,11 +7,7 @@
 # Copyright (C) 2024 Abhishek Singh
 #
 
-# Get the absolute path of the install script
-INSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
-
-# Get the absolute path of the _utilspxd script
-_utilspxd_path="$INSTALL_SCRIPT_PATH/include/_utilspxd"
+_utilspxd_path="./include/_utilspxd"
 
 source $_utilspxd_path || exit 1
 
@@ -40,9 +36,6 @@ cp -r "$INSTALL_SCRIPT_PATH/include/"* "$proxdad_installation_path/scripts"
 echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
 echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
-
-# ProxDad 
-echo -e "Welcome to ProxDad installation\n"
 
 # Display default values and ask if the user wants to continue with them
 echo "Default values"
