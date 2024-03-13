@@ -1,20 +1,11 @@
 #!/bin/bash
-#
+# 
 # uninstall script | MIT License
-#
+# 
 # This script uninstalls ProxDad from user's home directory. 
-#
-#
-# It first checks if ProxDad is already uninstalled and if it's currently ON.
-# If not ON, it prompts the user for confirmation to uninstall. 
-# Upon confirmation, it removes the ProxDad installation directory /.proxdad and 
-# its contents, then eliminates references to ProxDad in the user's .bashrc 
-# file. Afterward, it informs the user of successful uninstallation and sources 
-# the .bashrc file to apply changes.
-#
-#
+# 
 # Copyright (C) 2024 Abhishek Singh
-#
+# 
 
 # Get the absolute path of the uninstall script
 UNINSTALL_SCRIPT_PATH=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
@@ -38,7 +29,7 @@ if is_proxdad_on; then
 fi
 
 # Prompt the user to confirm uninstallation
-read -p "Do you really want to uninstall ProxDad $proxdad_version? [y/N]: " uninstall_choice
+read -p "Do you really want to uninstall ProxDad ? [y/N]: " uninstall_choice
 
 if [ "${uninstall_choice,,}" != "y" ] && [ "${uninstall_choice,,}" != "yes" ]; then
     echo "Exiting without uninstalling."
@@ -51,9 +42,10 @@ sudo rm -rf "$proxdad_installation_path"
 # Remove ProxDad directory from PATH in .bashrc
 sed -i "/# Adding ProxDad scripts folder to PATH/,/# End of ProxDad scripts folder to PATH/d" "$HOME/.bashrc"
 
-echo "ProxDad has been succesfully uninstalled from $proxdad_installation_path"
-
 # Source the .bashrc file to apply changes to the current session
 source "$HOME/.bashrc"
+
+# Display success message
+echo "ProxDad has been succesfully uninstalled from $proxdad_installation_path"
 
 exit 0

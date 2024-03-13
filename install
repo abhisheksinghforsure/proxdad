@@ -4,18 +4,6 @@
 #
 # This script installs ProxDad to user's home directory.
 #
-#
-# It first checks for root privileges to ensure it's not run with elevated 
-# permissions. If ProxDad is already installed, it informs the user. Next,
-# it copies scripts to the user's home directory inside /.proxdad and gives 
-# them executable permission. It then adds the /.proxdad directory to the 
-# user's PATH variable for easy access. It prompts the user to either accept 
-# default proxy settings or input custom ones, securely storing the information
-# in /.proxdad/proxdad.conf configuration file. Additionally, it checks for 
-# the presence of 'ncat' utility and installs it if necessary. Finally, 
-# it displays a success message upon completing the installation process.
-#
-#
 # Copyright (C) 2024 Abhishek Singh
 #
 
@@ -54,7 +42,7 @@ echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
 echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 
 # ProxDad 
-echo -e "Welcome to ProxDad $proxdad_version installation\n"
+echo -e "Welcome to ProxDad installation\n"
 
 # Display default values and ask if the user wants to continue with them
 echo "Default values"
