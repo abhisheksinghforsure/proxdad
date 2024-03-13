@@ -22,6 +22,7 @@ Commands:
   off                   Turn off ProxDad
   restart               Restart ProxDad
   status                Get status of ProxDad
+  uninstall             Uninstall ProxDad
   set                   Set ProxDad settings
     -i <host>           Set proxy host
     -p <port>           Set proxy port
@@ -49,6 +50,7 @@ case $1 in
     off) offpxd ;;
     restart) restartpxd ;;
     status) statuspxd ;;
+    uninstall) uninstallpxd ;;
     set) shift; setpxd "$@" ;;
     *) 
         echo "Error: Invalid command specified."; 
