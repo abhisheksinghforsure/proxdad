@@ -7,7 +7,6 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-proxdad_version="v1.0"
 proxdad_installation_path="$HOME/.proxdad"
 proxdad_config_file="$proxdad_installation_path/proxdad.conf"
 
