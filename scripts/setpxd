@@ -17,10 +17,10 @@ Usage: $(basename "$0") [options]
 Options:
   -h, --help            Display this help
 
-  -i <host>             Set host
-  -p <port>             Set port
-  -u <username>         Set username
-  -w <password>         Set password
+  -i <host>             Set proxy host
+  -p <port>             Set proxy port
+  -u <username>         Set proxy username
+  -w <password>         Set proxy password
 
 Examples:
   $(basename "$0") -i 172.31.102.29 -p 3128

@@ -24,10 +24,10 @@ Commands:
   status [statuspxd]           Get status of ProxDad
   uninstall [uninstallpxd]     Uninstall ProxDad
   set [setpxd]                 Set ProxDad settings
-    -i <host>                  Set host
-    -p <port>                  Set port
-    -u <username>              Set username
-    -w <password>              Set password
+    -i <host>                  Set proxy host
+    -p <port>                  Set proxy port
+    -u <username>              Set proxy username
+    -w <password>              Set proxy password
 
 ProxDad is installed at $proxdad_installation_path
 ProxDad settings are specified in $proxdad_config_file
