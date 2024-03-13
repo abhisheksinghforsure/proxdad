@@ -4,16 +4,6 @@
 # 
 # This script turns ON ProxDad version "v1.0" in a user's system.
 # 
-# 
-# It first checks for root privileges to ensure it's not run with elevated 
-# permissions. It then checks if ProxDad is already ON and if the 
-# configuration file exists before configuring the proxy settings system-wide. 
-# It modifies environment variables, APT package manager settings, 
-# GNOME proxy applet configurations, as well as proxy settings for Git, npm, 
-# Snap, and SSH. Upon successful configuration, it displays a message 
-# confirming ProxDad is turned ON.
-# 
-# 
 # Copyright (C) 2024 Abhishek Singh
 # 
 

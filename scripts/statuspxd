@@ -4,24 +4,13 @@
 # 
 # This script checks whether proxy details are applied to the system environment.
 # 
-#
-# It defines two functions: is_proxdad_on, which examines if the proxy details 
-# are present in the /etc/environment file, and get_proxdad_status, which 
-# retrieves and formats the proxy host and port if the proxy is enabled. 
-# The script also verifies if it's executed directly and if so, it calls 
-# get_proxdad_status to obtain and display the proxy details along with 
-# indicating whether "ProxDad" (proxy) is on or off. It essentially serves as 
-# a tool to check and report the status of a proxy configuration on the system.
-# 
-# 
 # Copyright (C) 2024 Abhishek Singh
 # 
 
 if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
-    # Extract host and port using awk
     proxy_host=$(awk -F '[@:]' '{print $4}' <<< "$proxy_var")
     proxy_port=$(awk -F '[@:]' '{print $5}' <<< "$proxy_var")
-
+    
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is \e[1;32mON\e[0m"
     echo "     Proxy host: $proxy_host"
     echo "     Proxy port: $proxy_port"

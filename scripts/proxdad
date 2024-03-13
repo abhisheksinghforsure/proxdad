@@ -1,13 +1,8 @@
 #!/bin/bash
 #
-# proxdad.sh | MIT License
+# proxdad | MIT License
 #
 # This script introduces ProxDad to a user. 
-#
-# It streamlines proxy configuration on Linux, providing commands for setting,
-# turning on, turning off, and checking the status of ProxDad. Users can access 
-# usage and version information easily, with options for reporting bugs via GitHub, 
-# ensuring efficient system management.
 #
 # Copyright (C) 2024 Abhishek Singh
 #
