@@ -15,15 +15,15 @@ usage() {
 Usage: $(basename "$0") [-h | --help] [command]
 
 Options:
-  -h, --help            Display this help
+  -h, --help                   Display this help
 
 Commands:
-  on [onpxd]                   Turn on ProxDad
-  off [offpxd]                 Turn off ProxDad
-  restart [restartpxd]         Restart ProxDad
-  status [statuspxd]           Get status of ProxDad
-  uninstall [uninstallpxd]     Uninstall ProxDad
-  set [setpxd]                 Set ProxDad settings
+  on | onpxd                   Turn on ProxDad
+  off | offpxd                 Turn off ProxDad
+  restart | restartpxd         Restart ProxDad
+  status | statuspxd           Get status of ProxDad
+  uninstall | uninstallpxd     Uninstall ProxDad
+  set | setpxd                 Set ProxDad settings
     -i <host>                  Set proxy host
     -p <port>                  Set proxy port
     -u <username>              Set proxy username
