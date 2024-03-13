@@ -9,7 +9,6 @@
 
 source _utilspxd || exit 1
 
-# Check ProxDad status
 if ! is_proxdad_on; then
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is already \e[1;31mOFF\e[0m"
     exit 1
@@ -55,7 +54,7 @@ if command -v ssh &> /dev/null; then
     sed -i '/^ *ProxyCommand /d' ~/.ssh/config
 fi
 
-# Display a message indicating success
+# Display success message
 echo -e "\e[1;31m\u25CF\e[0m ProxDad is turned \e[1;31mOFF\e[0m"
 
 exit 0

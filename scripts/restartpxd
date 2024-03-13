@@ -15,18 +15,23 @@ if ! is_proxdad_on; then
 fi
 
 source $proxdad_config_file || exit 1
-source _cmmnpxd || exit 1
 
+# Update proxy environment variables for system-wide use
 sudo sed -i "/^export \(http\|https\|ftp\)_proxy=/s|=.*|=\"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\"|" /etc/environment
 
+# Update proxy for apt (package manager)
 if command -v apt &> /dev/null; then
     sudo sh -c "echo 'Acquire::http::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";\nAcquire::https::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";\nAcquire::ftp::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";' > /etc/apt/apt.conf.d/40proxy"
 fi
 
+# Update proxy for gnome applet, git, npm and snap
+source _cmmnpxd || exit 1
 set_proxies
 
+# Update proxy for ssh
 sed -i "s/^ *ProxyCommand.*/ProxyCommand ncat --proxy-type http --proxy $proxy_host:$proxy_port --proxy-auth $proxy_username:$proxy_password %h %p/" ~/.ssh/config
 
+# Display success message
 echo -e "ProxDad is restarted"
 
 exit 0
