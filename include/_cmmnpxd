@@ -1,4 +1,11 @@
 #!/bin/bash
+# 
+# _cmmnpxd include | MIT License
+# 
+# This include provides common functions for ProxDad functionality.
+# 
+# Copyright (C) 2024 Abhishek Singh
+# 
 
 set_proxies() {
     # Set proxy for gnome proxy applet
