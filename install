@@ -1,23 +1,15 @@
 #!/bin/bash
-#
+# 
 # install script | MIT License
-#
+# 
 # This script installs ProxDad to user's home directory.
-#
+# 
 # Copyright (C) 2024 Abhishek Singh
-#
+# 
 
-_utilspxd_path="./include/_utilspxd"
+source ./include/_utilspxd || exit 1
 
-source $_utilspxd_path || exit 1
-
-# Check if ProxDad is already installed
-if [ -d "$proxdad_installation_path" ]; then
-    echo "ProxDad is already installed"
-    exit 1
-fi
-
-# Get sudo permission for nothing
+# Get sudo permission
 sudo true
 
 # Create the destination folder
@@ -33,9 +25,11 @@ chmod +x -R "$proxdad_installation_path/scripts"
 cp -r "./include/"* "$proxdad_installation_path/scripts"
 
 # Add ProxDad directory to the PATH variable
-echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
-echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
-echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
+if ! grep -q "ProxDad scripts folder to PATH" "$HOME/.bashrc"; then
+    echo "# Adding ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
+    echo "export PATH=\$PATH:$proxdad_installation_path/scripts" >> "$HOME/.bashrc"
+    echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
+fi
 
 # Display default values and ask if the user wants to continue with them
 echo "Default values"
