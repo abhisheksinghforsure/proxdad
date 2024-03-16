@@ -65,6 +65,12 @@ offpxd
 statuspxd
 ```
 
+- To set ProxDad configuration, type the following command and follow the help:
+
+```bash
+setpxd -h
+```
+
 - To check help for ProxDad, type the following command:
 
 ```bash
@@ -76,12 +82,12 @@ proxdad -h
 To uninstall ProxDad, type the following command: 
 
 ```bash
-unistallpxd
+uninstallpxd
 ```
 
 ## Compatibility
 
-ProxDad is compatible with most Linux distributions. However, it is primarily tested on Ubuntu and Debian-based systems.
+ProxDad is compatible with most Linux distributions. However, it is primarily tested on **Ubuntu** and **Debian-based systems**.
 
 ## Contributing
 
