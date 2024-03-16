@@ -12,17 +12,20 @@ source ./include/_utilspxd || exit 1
 # Get sudo permission
 sudo true
 
-# Create the destination folder
+# Create ProxDad folder
 mkdir -p "$proxdad_installation_path"
 
-# Copy the scripts to the destination folder
+# Copy scripts to the ProxDad folder
 cp -r "./scripts" "$proxdad_installation_path"
 
 # Give executable permissions to the scripts
 chmod +x -R "$proxdad_installation_path/scripts"
 
-# Copy the include folder to the destination folder
+# Copy includes to the ProxDad folder
 cp -r "./include/"* "$proxdad_installation_path/scripts"
+
+# Copy license to the ProxDad folder
+cp "./LICENSE" "$proxdad_installation_path"
 
 # Add ProxDad directory to the PATH variable
 if ! grep -q "ProxDad scripts folder to PATH" "$HOME/.bashrc"; then
