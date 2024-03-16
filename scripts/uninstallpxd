@@ -19,7 +19,7 @@ fi
 # Execute offpxd script to turn OFF ProxDad if ON
 offpxd
 
-# Remove the destination folder and its contents
+# Remove the ProxDad folder and its contents
 sudo rm -rf "$proxdad_installation_path"
 
 # Remove ProxDad directory from PATH in .bashrc
