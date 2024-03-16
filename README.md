@@ -28,7 +28,7 @@ git clone https://github.com/abhisheksinghforsure/proxdad.git
 cd proxdad
 ```
 
-3. Give executable permission to the installation and uninstallation scripts:
+3. Give executable permission to the installation scripts:
 
 ```bash
 chmod +x install
@@ -45,32 +45,39 @@ chmod +x install
 
 ## Usage
 
-1. Open a new terminal.
-2. To turn ON ProxDad, type the following command:
+Open a new terminal.
+
+- To turn ON ProxDad, type the following command:
 
 ```bash
 onpxd
 ```
 
-3. To turn OFF ProxDad, type the following command:
+- To turn OFF ProxDad, type the following command:
 
 ```bash
 offpxd
 ```
 
-4. To check whether ProxDad is ON or OFF, type the following command:
+- To check whether ProxDad is ON or OFF, type the following command:
 
 ```bash
 statuspxd
 ```
 
-5. To check help for ProxDad, type the following command:
+- To check help for ProxDad, type the following command:
 
 ```bash
 proxdad -h
 ```
 
-For more detailed usage instructions and options, refer to the documentation in the `docs` directory.
+## Uninstallation
+
+To uninstall ProxDad, type the following command: 
+
+```bash
+unistallpxd
+```
 
 ## Compatibility
 
