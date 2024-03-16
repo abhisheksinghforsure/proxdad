@@ -1,10 +1,10 @@
 # ProxDad
 
-ProxDad is a collection of bash scripts designed to simplify the management of proxy settings in Linux environments. It provides a set of bash scipts to quickly turn ON or OFF proxy settings for different applications.
+ProxDad is a set of bash scripts that simplifies proxy settings management in Linux environments. It provides an easy way to toggle proxy settings ON or OFF for different applications.
 
 ## Features 
 
-ProxDad configures proxy settings for following applications:
+ProxDad configures proxy settings for the following applications:
 
 - Environment variables for system-wide use.
 - APT (Advanced Package Tool) for package management.
