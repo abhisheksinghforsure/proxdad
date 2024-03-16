@@ -1,14 +1,12 @@
 # ProxDad 
 
-![Platform: Linux](https://img.shields.io/badge/Platform-Linux-red)
-![Script: Bash](https://img.shields.io/badge/Script-Bash-brightgreen)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/abhisheksinghforsure/proxdad/blob/main/LICENSE)
+[![Platform: Linux](https://img.shields.io/badge/Platform-Linux-red)](#)[![Script: Bash](https://img.shields.io/badge/Script-Bash-brightgreen)](#)[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/abhisheksinghforsure/proxdad/blob/main/LICENSE)
 
 ProxDad is a set of bash scripts that simplifies proxy settings management in Linux environments. It provides an easy way to toggle proxy settings ON or OFF for different applications.
 
 ## Features 
 
-ProxDad configures proxy settings for the following applications:
+> ProxDad configures proxy settings for the following applications:
 
 - Environment variables for system-wide use.
 - APT (Advanced Package Tool) for package management.
