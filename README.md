@@ -4,7 +4,7 @@
 [![Script: Bash](https://img.shields.io/badge/Script-Bash-brightgreen)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/abhisheksinghforsure/proxdad/blob/main/LICENSE)
 
-ProxDad is a set of bash scripts that simplifies proxy settings management in Linux environments. It provides an easy way to toggle proxy settings ON or OFF for different applications.
+ProxDad is a set of bash scripts that simplifies proxy settings management in Linux environments. It provides an easy way to toggle proxy settings ON or OFF for various applications.
 
 ## Features 
 
