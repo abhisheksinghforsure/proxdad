@@ -12,8 +12,8 @@ if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
     proxy_port=$(awk -F '[@:]' '{print $5}' <<< "$proxy_var")
     
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is ON"
-    echo "  Proxy host: $proxy_host"
-    echo "  Proxy port: $proxy_port"
+    echo "  ⤷ Proxy host: $proxy_host"
+    echo "  ⤷ Proxy port: $proxy_port"
 else
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is OFF"
 fi
