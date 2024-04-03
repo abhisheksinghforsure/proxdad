@@ -17,6 +17,16 @@ set_proxies() {
         done
     fi
 
+    # Set proxy for KDE proxy applet
+    if command -v kwriteconfig5 &> /dev/null; then
+        kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 1
+        kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy "$proxy_host:$proxy_port"
+        kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxyEnabled true
+        kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxyUsername "$proxy_username"
+        kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxyPassword "$proxy_password"
+        kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key useProxy true
+    fi
+
     # Set proxy for Git
     if command -v git &> /dev/null; then
         git config --global http.proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
