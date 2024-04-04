@@ -2,11 +2,12 @@
 # 
 # statuspxd script | MIT License
 # 
-# This script checks the status of the ProxDad for the user.
+# This script checks the status of ProxDad for the user.
 # 
 # Copyright (C) 2024 Abhishek Singh
 # 
 
+# Check proxy environment variables
 if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
     proxy_host=$(awk -F '[@:]' '{print $4}' <<< "$proxy_var")
     proxy_port=$(awk -F '[@:]' '{print $5}' <<< "$proxy_var")
