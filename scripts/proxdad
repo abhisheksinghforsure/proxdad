@@ -9,7 +9,7 @@
 
 source _utilspxd || exit 1
 
-# Define usage
+# Function to display usage information
 usage() {
     cat << EOF
 Usage: $(basename "$0") [-h | --help] [command]
