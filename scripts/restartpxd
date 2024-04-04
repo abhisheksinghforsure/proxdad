@@ -24,7 +24,7 @@ if command -v apt &> /dev/null; then
     sudo sh -c "echo 'Acquire::http::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";\nAcquire::https::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";\nAcquire::ftp::proxy \"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\";' > /etc/apt/apt.conf.d/40proxy"
 fi
 
-# Update proxy for gnome applet, git, npm and snap
+# Update proxy for gnome applet, kde applet, git, npm and snap
 source _cmmnpxd || exit 1
 set_proxies
 
