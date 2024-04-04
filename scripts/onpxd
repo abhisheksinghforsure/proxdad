@@ -36,7 +36,7 @@ Acquire::ftp::proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${
 EOF
 fi
 
-# Set proxy for gnome applet, git, npm and snap
+# Set proxy for gnome applet, kde applet, git, npm and snap
 source _cmmnpxd || exit 1
 set_proxies
 
