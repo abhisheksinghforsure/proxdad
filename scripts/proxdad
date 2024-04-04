@@ -9,7 +9,7 @@
 
 source _utilspxd || exit 1
 
-# Define usage and version information
+# Define usage
 usage() {
     cat << EOF
 Usage: $(basename "$0") [-h | --help] [command]
