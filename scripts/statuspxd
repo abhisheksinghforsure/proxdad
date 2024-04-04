@@ -2,7 +2,7 @@
 # 
 # statuspxd script | MIT License
 # 
-# This script checks whether proxy details are applied to the system environment.
+# This script checks the status of the ProxDad for the user.
 # 
 # Copyright (C) 2024 Abhishek Singh
 # 
