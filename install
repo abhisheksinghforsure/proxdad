@@ -78,6 +78,9 @@ if ! command -v ncat &> /dev/null; then
     fi
 fi
 
+# Source the .bashrc file to apply changes to the current session
+source "$HOME/.bashrc"
+
 # Display success message
 echo "ProxDad has been succesfully installed at $proxdad_installation_path"
 
