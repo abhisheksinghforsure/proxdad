@@ -32,6 +32,6 @@ set_proxies
 sed -i "s/^ *ProxyCommand.*/ProxyCommand ncat --proxy-type http --proxy $proxy_host:$proxy_port --proxy-auth $proxy_username:$proxy_password %h %p/" ~/.ssh/config
 
 # Display success message
-echo -e "ProxDad is restarted"
+echo -e "\e[1;34m\u25CF\e[0m ProxDad is RESTARTED"
 
 exit 0
