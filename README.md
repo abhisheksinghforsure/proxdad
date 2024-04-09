@@ -13,6 +13,7 @@ ProxDad is a set of bash scripts that simplifies proxy settings management in Li
 - Environment variables for system-wide use.
 - APT (Advanced Package Tool) for package management.
 - GNOME proxy applet settings.
+- KDE proxy applet settings.
 - Git for version control.
 - npm (Node Package Manager) for Node.js packages.
 - Snap for managing snap packages.
