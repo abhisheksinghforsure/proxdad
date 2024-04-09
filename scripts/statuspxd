@@ -9,12 +9,24 @@
 
 # Check proxy environment variables
 if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
-    proxy_host=$(awk -F '[@:]' '{print $4}' <<< "$proxy_var")
-    proxy_port=$(awk -F '[@:]' '{print $5}' <<< "$proxy_var")
+    proxy_host=$(awk -F '[@:/]' '{print $6}' <<< "$proxy_var")
+    proxy_port=$(awk -F '[@:/]' '{print $7}' <<< "$proxy_var")
+    proxy_username=$(awk -F '[@:/]' '{print $4}' <<< "$proxy_var")
+    proxy_password=$(awk -F '[@:/]' '{print $5}' <<< "$proxy_var")
     
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is ON"
     echo "  ⤷ Proxy host: $proxy_host"
     echo "  ⤷ Proxy port: $proxy_port"
+
+    if [ -n "$proxy_username" ]; then
+        echo "  ⤷ Proxy username: $proxy_username"
+    fi
+
+    if [ -n "$proxy_password" ]; then
+        masked_password=$(echo "$proxy_password" | sed 's/./*/g')
+        echo "  ⤷ Proxy password: $masked_password"
+    fi
+
 else
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is OFF"
 fi
