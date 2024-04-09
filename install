@@ -12,6 +12,19 @@ source ./include/_utilspxd || exit 1
 # Get sudo permission
 sudo true
 
+# Install ncat for ssh
+if ! command -v ncat &> /dev/null; then
+    echo "Installing ncat for ssh proxy configuration..."
+    sudo apt update -y && sudo apt install -y ncat
+
+    if [ $? -eq 0 ]; then
+        echo "'ncat' has been installed successfully"
+    else
+        echo "'ncat' installation has failed"
+        exit 1
+    fi
+fi
+
 # Create ProxDad folder
 mkdir -p "$proxdad_installation_path"
 
@@ -68,21 +81,6 @@ if command -v ssh &> /dev/null; then
     if [ ! -f ~/.ssh/config ]; then
         mkdir -p ~/.ssh
         touch ~/.ssh/config
-    fi
-fi
-
-if ! command -v ncat &> /dev/null; then
-    echo "Installing ncat for ssh proxy configuration..."
-    sudo apt update -y && sudo apt install -y ncat
-
-    if [ $? -eq 0 ]; then
-        echo "'ncat' is installed successfully"
-    else
-        echo "ProxDad failed to install 'ncat'"
-        echo "ProxDad uses 'ncat' to configure proxy settings to ssh"
-        echo "ssh will not work with proxy settings, if 'ncat' is not installed"
-        echo "Use 'sudo apt install ncat' to install it"
-        exit 1
     fi
 fi
 
