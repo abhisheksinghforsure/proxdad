@@ -15,16 +15,16 @@ usage() {
 Usage: $(basename "$0") [options]
 
 Options:
-  -h, --help            Display this help
+  -h, --help                Display this help
 
-  -i <host>             Set proxy host
-  -p <port>             Set proxy port
-  -u <username>         Set proxy username
-  -w <password>         Set proxy password
+  -i <host>                 Set proxy host
+  -p <port>                 Set proxy port
+  -u <username>             Set proxy username
+  -w <password>             Set proxy password
 
 Examples:
-  $(basename "$0") -i 172.31.102.29 -p 3128
-  $(basename "$0") -i 172.31.102.29 -p 3128 -u edcguest -w edcguest
+  $(basename "$0") -i 172.31.102.29
+  $(basename "$0") -p 3128
 
 ProxDad settings are specified in $proxdad_config_file
 EOF
