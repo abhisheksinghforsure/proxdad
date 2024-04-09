@@ -45,12 +45,18 @@ chmod +x install
 ./install
 ```
 
-5. Follow the prompts to configure your proxy settings. You can choose to use default settings or set them manually.
+5. Follow the prompts to configure proxy settings. You can choose to use default settings or set them manually.
 6. Once the installation is complete, ProxDad is ready to use.
 
 ## Usage
 
 Open a new terminal.
+
+- To check usage of ProxDad, type the following command:
+
+```bash
+proxdad
+```
 
 - To turn ON ProxDad, type the following command:
 
@@ -68,18 +74,6 @@ offpxd
 
 ```bash
 statuspxd
-```
-
-- To set ProxDad configuration, type the following command and follow the help:
-
-```bash
-setpxd -h
-```
-
-- To check help for ProxDad, type the following command:
-
-```bash
-proxdad -h
 ```
 
 ## Uninstallation
