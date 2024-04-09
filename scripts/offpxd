@@ -34,11 +34,6 @@ fi
 # Remove proxy for KDE proxy applet
 if command -v kwriteconfig5 &> /dev/null; then
     kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 0
-    kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxy ""
-    kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxyEnabled false
-    kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxyUsername ""
-    kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key httpProxyPassword ""
-    kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key useProxy false
 fi
 
 # Remove proxy for Git
