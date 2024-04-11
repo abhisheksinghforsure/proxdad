@@ -22,7 +22,7 @@ echo "    ⤷ Proxy password: edcguest"
 while true; do
     read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
 
-    if [[ -z "$continue_choice" ] || [ "${continue_choice,,}" == "y" || "${continue_choice,,}" == "yes" ]]; then
+    if [[ -z "$continue_choice" ]] || [[ "${continue_choice,,}" == "y" || "${continue_choice,,}" == "yes" ]]; then
         proxy_host="172.31.102.29"
         proxy_port="3128"
         proxy_username="edcguest"
