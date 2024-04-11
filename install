@@ -22,13 +22,13 @@ echo "    ⤷ Proxy password: edcguest"
 while true; do
     read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
 
-    if [ -z "$continue_choice" ] || [ "$continue_choice" == "y" ] || [ "$continue_choice" == "yes" ] || [ "$continue_choice" == "Y" ] || [ "$continue_choice" == "YES" ]; then
+    if [[ -z "$continue_choice" ] || [ "${continue_choice,,}" == "y" || "${continue_choice,,}" == "yes" ]]; then
         proxy_host="172.31.102.29"
         proxy_port="3128"
         proxy_username="edcguest"
         proxy_password="edcguest"
         break
-    elif [ "$continue_choice" == "n" ] || [ "$continue_choice" == "no" ] || [ "$continue_choice" == "N" ] || [ "$continue_choice" == "NO" ]; then
+    elif [[ "${continue_choice,,}" == "n" || "${continue_choice,,}" == "no" ]]; then
         echo "[Custom values]"
         read -p "    ⤷ Enter proxy host: " proxy_host
         read -p "    ⤷ Enter proxy port: " proxy_port
