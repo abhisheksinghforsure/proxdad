@@ -17,7 +17,7 @@ if [ "${uninstall_choice,,}" != "y" ] && [ "${uninstall_choice,,}" != "yes" ]; t
 fi
 
 # Execute offpxd script to turn OFF ProxDad if ON
-offpxd
+offpxd > /dev/null || exit 1
 
 # Remove the ProxDad folder and its contents
 sudo rm -rf "$proxdad_installation_path"
