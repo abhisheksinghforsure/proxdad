@@ -49,7 +49,8 @@ if ! command -v ncat > /dev/null; then
     if [ $? -eq 0 ]; then
         echo "'ncat' has been installed successfully"
     else
-        echo "'ncat' installation has failed"
+        echo -e "\e[1;31m'ncat' installation has failed.\e[0m"
+        echo -e "\e[1;31mCheck your internet connection and try again.\e[0m"
         exit 1
     fi
 fi
