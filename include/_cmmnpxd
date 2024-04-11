@@ -9,7 +9,7 @@
 
 set_proxies() {
     # Set proxy for gnome proxy applet
-    if command -v gsettings &> /dev/null; then
+    if command -v gsettings > /dev/null; then
         gsettings set org.gnome.system.proxy mode 'manual'
         for protocol in "http" "https" "ftp"; do
             gsettings set "org.gnome.system.proxy.$protocol" host "$proxy_username:$proxy_password@$proxy_host"
@@ -18,24 +18,24 @@ set_proxies() {
     fi
 
     # Set proxy for KDE proxy applet
-    if command -v kwriteconfig5 &> /dev/null; then
+    if command -v kwriteconfig5 > /dev/null; then
         kwriteconfig5 --file kioslaverc --group 'Proxy Settings' --key ProxyType 4
     fi
 
     # Set proxy for Git
-    if command -v git &> /dev/null; then
+    if command -v git > /dev/null; then
         git config --global http.proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
         git config --global https.proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
     fi
 
     # Set proxy for npm
-    if command -v npm &> /dev/null; then
+    if command -v npm > /dev/null; then
         npm config set proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
         npm config set https-proxy "http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
     fi
 
     # Set proxy for Snap
-    if command -v snap &> /dev/null; then
+    if command -v snap > /dev/null; then
         sudo snap set system proxy.http="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
         sudo snap set system proxy.https="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
     fi

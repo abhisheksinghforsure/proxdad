@@ -13,7 +13,7 @@ source ./include/_utilspxd || exit 1
 sudo true
 
 # Install ncat for ssh
-if ! command -v ncat &> /dev/null; then
+if ! command -v ncat > /dev/null; then
     echo "Installing ncat for ssh proxy configuration..."
     sudo apt update -y && sudo apt install -y ncat
 
@@ -78,7 +78,7 @@ echo "proxy_username=$proxy_username" >> "$proxdad_config_file"
 echo "proxy_password=$proxy_password" >> "$proxdad_config_file"
 
 # Create ssh config file if not
-if command -v ssh &> /dev/null; then
+if command -v ssh > /dev/null; then
     if [ ! -f ~/.ssh/config ]; then
         mkdir -p ~/.ssh
         touch ~/.ssh/config
