@@ -15,16 +15,16 @@ if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
     proxy_password=$(awk -F '[@:/]' '{print $5}' <<< "$proxy_var")
     
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is ON"
-    echo "     ⤷ Proxy host: $proxy_host"
-    echo "     ⤷ Proxy port: $proxy_port"
+    echo "    ⤷ Proxy host: $proxy_host"
+    echo "    ⤷ Proxy port: $proxy_port"
 
     if [ -n "$proxy_username" ]; then
-        echo "     ⤷ Proxy username: $proxy_username"
+        echo "    ⤷ Proxy username: $proxy_username"
     fi
 
     if [ -n "$proxy_password" ]; then
         masked_password=$(echo "$proxy_password" | sed 's/./*/g')
-        echo "     ⤷ Proxy password: $masked_password"
+        echo "    ⤷ Proxy password: $masked_password"
     fi
 
 else
