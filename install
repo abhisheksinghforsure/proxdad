@@ -12,6 +12,35 @@ source ./include/_utilspxd || exit 1
 # Get sudo permission
 sudo true
 
+# Display default values and ask if the user wants to continue with them
+echo "[Default values]"
+echo "    ⤷ Proxy host: 172.31.102.29"
+echo "    ⤷ Proxy port: 3128"
+echo "    ⤷ Proxy username: edcguest"
+echo "    ⤷ Proxy password: edcguest"
+
+while true; do
+    read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
+
+    if [ -z "$continue_choice" ] || [ "$continue_choice" == "y" ] || [ "$continue_choice" == "yes" ] || [ "$continue_choice" == "Y" ] || [ "$continue_choice" == "YES" ]; then
+        proxy_host="172.31.102.29"
+        proxy_port="3128"
+        proxy_username="edcguest"
+        proxy_password="edcguest"
+        break
+    elif [ "$continue_choice" == "n" ] || [ "$continue_choice" == "no" ] || [ "$continue_choice" == "N" ] || [ "$continue_choice" == "NO" ]; then
+        echo "[Custom values]"
+        read -p "    ⤷ Enter proxy host: " proxy_host
+        read -p "    ⤷ Enter proxy port: " proxy_port
+        read -p "    ⤷ Enter proxy username: " proxy_username
+        read -p "    ⤷ Enter proxy password: " -s proxy_password  # -s flag hides the password input
+        echo ""
+        break
+    else
+        echo "Invalid choice."
+    fi
+done
+
 # Install ncat for ssh
 if ! command -v ncat > /dev/null; then
     echo "Installing ncat for ssh proxy configuration..."
@@ -22,6 +51,14 @@ if ! command -v ncat > /dev/null; then
     else
         echo "'ncat' installation has failed"
         exit 1
+    fi
+fi
+
+# Create ssh config file if not
+if command -v ssh > /dev/null; then
+    if [ ! -f ~/.ssh/config ]; then
+        mkdir -p ~/.ssh
+        touch ~/.ssh/config
     fi
 fi
 
@@ -47,42 +84,11 @@ if ! grep -q "ProxDad scripts folder to PATH" "$HOME/.bashrc"; then
     echo "# End of ProxDad scripts folder to PATH" >> "$HOME/.bashrc"
 fi
 
-# Display default values and ask if the user wants to continue with them
-echo "[Default values]"
-echo "    ⤷ Proxy host: 172.31.102.29"
-echo "    ⤷ Proxy port: 3128"
-echo "    ⤷ Proxy username: edcguest"
-echo "    ⤷ Proxy password: edcguest"
-read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
-
-# Set default values if the user presses Enter without typing anything
-if [ -z "$continue_choice" ] || [ "$continue_choice" == "y" ] || [ "$continue_choice" == "yes" ]; then
-    proxy_host="172.31.102.29"
-    proxy_port="3128"
-    proxy_username="edcguest"
-    proxy_password="edcguest"
-else
-    echo "[Custom values]"
-    read -p "    ⤷ Enter proxy host: " proxy_host
-    read -p "    ⤷ Enter proxy port: " proxy_port
-    read -p "    ⤷ Enter proxy username: " proxy_username
-    read -p "    ⤷ Enter proxy password: " -s proxy_password  # -s flag hides the password input
-    echo ""
-fi
-
 # Store proxy configuration in the config file
 echo "proxy_host=$proxy_host" > "$proxdad_config_file"
 echo "proxy_port=$proxy_port" >> "$proxdad_config_file"
 echo "proxy_username=$proxy_username" >> "$proxdad_config_file"
 echo "proxy_password=$proxy_password" >> "$proxdad_config_file"
-
-# Create ssh config file if not
-if command -v ssh > /dev/null; then
-    if [ ! -f ~/.ssh/config ]; then
-        mkdir -p ~/.ssh
-        touch ~/.ssh/config
-    fi
-fi
 
 # Source the .bashrc file to apply changes to the current session
 source "$HOME/.bashrc"
