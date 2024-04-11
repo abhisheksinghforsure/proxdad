@@ -7,24 +7,21 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-proxdad_installation_path="$HOME/.proxdad"
-proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+# Prevent root user from executing script
+if [[ $EUID -eq 0 ]]; then
+    echo -e "\e[1;31mDon't use root privileges\e[0m"
+    exit 1
+fi
 
-# Function to prevent root user from executing a script
-prevent_root_execution() {
-    if [[ $EUID -eq 0 ]]; then
-        echo -e "\e[1;31mDon't use root privileges\e[0m"
-        exit 1
-    fi
-}
-
-# Function to check if proxy details is applied to environment
+# Function to check if proxy details have been applied to environment
 is_proxdad_on() {
     if grep -q "http_proxy" "/etc/environment"; then
-        return 0  # Yes, ProxDad is ON
+        return 0  # Yes, It means -> ProxDad is ON
     else
-        return 1  # No, ProxDad is OFF
+        return 1  # No, It means -> ProxDad is OFF
     fi
 }
 
-prevent_root_execution
+# Global vars
+proxdad_installation_path="$HOME/.proxdad"
+proxdad_config_file="$proxdad_installation_path/proxdad.conf"
