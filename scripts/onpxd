@@ -11,7 +11,7 @@ source _utilspxd || exit 1
 
 if is_proxdad_on; then
     echo -e "\e[1;32m\u25CF\e[0m ProxDad is already ON"
-    exit 1
+    exit 0
 fi
 
 source $proxdad_config_file || exit 1

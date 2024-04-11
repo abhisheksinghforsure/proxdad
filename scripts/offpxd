@@ -11,7 +11,7 @@ source _utilspxd || exit 1
 
 if ! is_proxdad_on; then
     echo -e "\e[1;31m\u25CF\e[0m ProxDad is already OFF"
-    exit 1
+    exit 0
 fi
 
 # Remove proxy environment variables
