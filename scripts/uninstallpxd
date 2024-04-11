@@ -1,6 +1,6 @@
 #!/bin/bash
 # 
-# uninstall script | MIT License
+# uninstallpxd script | MIT License
 # 
 # This script uninstalls ProxDad from the user's home directory. 
 # 
