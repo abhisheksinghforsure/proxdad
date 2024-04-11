@@ -29,6 +29,6 @@ sed -i "/# Adding ProxDad scripts folder to PATH/,/# End of ProxDad scripts fold
 source "$HOME/.bashrc"
 
 # Display success message
-echo "ProxDad has been succesfully uninstalled from $proxdad_installation_path"
+echo "ProxDad has been successfully uninstalled from $proxdad_installation_path"
 
 exit 0
