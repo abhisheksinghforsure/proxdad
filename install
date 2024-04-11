@@ -44,13 +44,15 @@ done
 # Install ncat for ssh
 if ! command -v ncat > /dev/null; then
     echo "Installing ncat for ssh proxy configuration..."
-    sudo apt update -y && sudo apt install -y ncat
+    sudo apt update -y
+    sudo apt install -y ncat
 
     if [ $? -eq 0 ]; then
         echo "'ncat' has been installed successfully"
     else
-        echo -e "\e[1;31m'ncat' installation has failed.\e[0m"
-        echo -e "\e[1;31mCheck your internet connection and try again.\e[0m"
+        echo -e "\e[1;31mProxDad failed to install 'ncat'.\e[0m"
+        echo -e "\e[1;31mCheck your internet connection and use 'sudo apt install ncat' to install it\e[0m"
+        echo -e "\e[1;31mProxDad installation failed. Try again after installing 'ncat'.\e[0m"
         exit 1
     fi
 fi
