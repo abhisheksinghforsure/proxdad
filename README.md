@@ -59,7 +59,7 @@ Open a new terminal.
 - To check usage of ProxDad, type the following command:
 
 ```bash
-proxdad
+proxdad --help
 ```
 
 - To turn ON ProxDad, type the following command:
@@ -74,10 +74,22 @@ onpxd
 offpxd
 ```
 
-- To check whether ProxDad is ON or OFF, type the following command:
+- To check status of ProxDad, type the following command:
 
 ```bash
 statuspxd
+```
+
+- To restart ProxDad, type the following command:
+
+```bash
+restartpxd
+```
+
+- To config proxy settings for ProxDad, type the following command & check help:
+
+```bash
+setpxd --help
 ```
 
 ## Uninstallation
