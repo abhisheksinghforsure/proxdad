@@ -80,16 +80,16 @@ offpxd
 statuspxd
 ```
 
+- To config proxy settings for ProxDad, type the following command and check help:
+
+```bash
+setpxd --help
+```
+
 - To restart ProxDad, type the following command:
 
 ```bash
 restartpxd
-```
-
-- To config proxy settings for ProxDad, type the following command & check help:
-
-```bash
-setpxd --help
 ```
 
 ## Uninstallation
@@ -102,7 +102,7 @@ uninstallpxd
 
 ## Compatibility
 
-ProxDad is compatible with most Linux distributions. However, it is primarily tested on **Ubuntu** and **Debian-based systems**.
+ProxDad is compatible with most Linux distributions that use **Bash** as their primary shell. However, it is primarily tested on **Ubuntu** and **Debian-based systems**.
 
 ## Contributing
 
