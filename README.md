@@ -21,7 +21,7 @@ ProxDad is a set of bash scripts that simplifies proxy settings management in Li
 
 ## Installation
 
-Watch ProxDad Installation and Usage Tutorial on YouTube 👇
+Click Below 👇 to Watch ProxDad Installation and Usage Tutorial on YouTube
 
 [![Video](https://img.youtube.com/vi/ypCnVTdO_J8/maxresdefault.jpg)](https://www.youtube.com/watch?v=ypCnVTdO_J8)
 
@@ -37,7 +37,7 @@ git clone https://github.com/abhisheksinghforsure/proxdad.git
 cd proxdad
 ```
 
-3. Give executable permission to the installation scripts:
+3. Give executable permission to the installation script:
 
 ```bash
 chmod +x install
