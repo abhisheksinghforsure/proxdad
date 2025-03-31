@@ -13,11 +13,11 @@ source ./include/_utilspxd || exit 1
 sudo true
 
 # Display default values and ask if the user wants to continue with them
-echo "[Default values]"
-echo "    ⤷ Proxy host: 172.31.102.29"
-echo "    ⤷ Proxy port: 3128"
-echo "    ⤷ Proxy username: edcguest"
-echo "    ⤷ Proxy password: edcguest"
+echo -e "[Default values]\n\
+    ├── Host            : 172.31.102.29\n\
+    ├── Port            : 3128\n\
+    ├── Username        : edcguest\n\
+    └── Password        : edcguest"
 
 while true; do
     read -p "Do you want to continue with the default values? [Y/n]: " continue_choice
