@@ -10,7 +10,7 @@
 source _utilspxd || exit 1
 
 if ! is_proxdad_on; then
-    echo -e "\e[1;31m\u25CF\e[0m ProxDad is already OFF"
+    echo -e "${RED}${CIRCLE}${RESET} ProxDad is already OFF"
     exit 0
 fi
 
@@ -60,6 +60,6 @@ if command -v ssh > /dev/null; then
 fi
 
 # Display success message
-echo -e "\e[1;31m\u25CF\e[0m ProxDad is turned OFF"
+echo -e "${RED}${CIRCLE}${RESET} ProxDad is turned OFF"
 
 exit 0
