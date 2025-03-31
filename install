@@ -88,10 +88,10 @@ if ! grep -q "ProxDad scripts folder to PATH" "$HOME/.bashrc"; then
 fi
 
 # Store proxy configuration in the config file
-echo "proxy_host=$proxy_host" > "$proxdad_config_file"
-echo "proxy_port=$proxy_port" >> "$proxdad_config_file"
-echo "proxy_username=$proxy_username" >> "$proxdad_config_file"
-echo "proxy_password=$proxy_password" >> "$proxdad_config_file"
+echo "proxy_host=\"$proxy_host\"" > "$proxdad_config_file"
+echo "proxy_port=\"$proxy_port\"" >> "$proxdad_config_file"
+echo "proxy_username=\"$proxy_username\"" >> "$proxdad_config_file"
+echo "proxy_password=\"$proxy_password\"" >> "$proxdad_config_file"
 
 # Source the .bashrc file to apply changes to the current session
 source "$HOME/.bashrc"
