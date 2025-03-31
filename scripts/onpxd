@@ -10,7 +10,7 @@
 source _utilspxd || exit 1
 
 if is_proxdad_on; then
-    echo -e "\e[1;32m\u25CF\e[0m ProxDad is already ON"
+    echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is already ON"
     exit 0
 fi
 
@@ -21,10 +21,10 @@ sudo cp /etc/environment /etc/environment.bak
 
 # Set proxy environment variables for system-wide use
 sudo tee -a /etc/environment > /dev/null << EOF
-export http_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
-export https_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
-export ftp_proxy=http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}
-export no_proxy=localhost,127.0.0.1
+http_proxy="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+https_proxy="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+ftp_proxy="http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}"
+no_proxy="localhost,127.0.0.1"
 EOF
 
 # Set proxy for apt (package manager)
@@ -46,6 +46,6 @@ if command -v ssh > /dev/null; then
 fi
 
 # Display success message
-echo -e "\e[1;32m\u25CF\e[0m ProxDad is turned ON"
+echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is turned ON"
 
 exit 0

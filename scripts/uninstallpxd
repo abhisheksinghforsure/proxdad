@@ -26,9 +26,6 @@ sudo rm -rf "$proxdad_installation_path"
 # Remove ProxDad directory from PATH in .bashrc
 sed -i "/# Adding ProxDad scripts folder to PATH/,/# End of ProxDad scripts folder to PATH/d" "$HOME/.bashrc"
 
-# Source the .bashrc file to apply changes to the current session
-source "$HOME/.bashrc"
-
 # Display success message
 echo "ProxDad has been successfully uninstalled from $proxdad_installation_path"
 

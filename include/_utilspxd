@@ -7,9 +7,15 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
+# Define colour codes
+GREEN="\e[1;32m"
+RED="\e[1;31m"
+RESET="\e[0m"
+CIRCLE="●"
+
 # Prevent root user from executing script
 if [[ $EUID -eq 0 ]]; then
-    echo -e "\e[1;31mDon't use root privileges\e[0m"
+    echo -e "${RED}[WARNING]${RESET} Do not use root privileges"
     exit 1
 fi
 
