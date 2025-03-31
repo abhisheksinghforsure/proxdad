@@ -13,7 +13,7 @@ source ./include/_utilspxd || exit 1
 sudo true
 
 # Display default values and ask if the user wants to continue with them
-echo -e "[Default values]\n\
+echo -e "Default values\n\
     ├── Host            : 172.31.102.29\n\
     ├── Port            : 3128\n\
     ├── Username        : edcguest\n\
@@ -29,11 +29,11 @@ while true; do
         proxy_password="edcguest"
         break
     elif [[ "${continue_choice,,}" == "n" || "${continue_choice,,}" == "no" ]]; then
-        echo "[Custom values]"
-        read -p "    ⤷ Enter proxy host: " proxy_host
-        read -p "    ⤷ Enter proxy port: " proxy_port
-        read -p "    ⤷ Enter proxy username: " proxy_username
-        read -p "    ⤷ Enter proxy password: " -s proxy_password  # -s flag hides the password input
+        echo -e "\nEnter custom values"
+        read -p "    ├── Host: " proxy_host
+        read -p "    ├── Port: " proxy_port
+        read -p "    ├── Username: " proxy_username
+        read -p "    └── Password: " -s proxy_password  # -s flag hides the password input
         echo ""
         break
     else
@@ -50,9 +50,9 @@ if ! command -v ncat > /dev/null; then
     if [ $? -eq 0 ]; then
         echo "'ncat' has been installed successfully"
     else
-        echo -e "\e[1;31mProxDad failed to install 'ncat'.\e[0m"
-        echo -e "\e[1;31mCheck your internet connection and use 'sudo apt install ncat' to install it\e[0m"
-        echo -e "\e[1;31mProxDad installation failed. Try again after installing 'ncat'.\e[0m"
+        echo -e "${RED}ProxDad failed to install 'ncat'.\n"\
+        "Check your internet connection and use 'sudo apt install ncat' to install it.\n"\
+        "ProxDad installation failed. Try again after installing 'ncat'.${RESET}"
         exit 1
     fi
 fi
@@ -88,10 +88,15 @@ if ! grep -q "ProxDad scripts folder to PATH" "$HOME/.bashrc"; then
 fi
 
 # Store proxy configuration in the config file
-echo "proxy_host=\"$proxy_host\"" > "$proxdad_config_file"
-echo "proxy_port=\"$proxy_port\"" >> "$proxdad_config_file"
-echo "proxy_username=\"$proxy_username\"" >> "$proxdad_config_file"
-echo "proxy_password=\"$proxy_password\"" >> "$proxdad_config_file"
+cat > "$proxdad_config_file" <<EOF
+proxy_host="$proxy_host"
+proxy_port="$proxy_port"
+proxy_username="$proxy_username"
+proxy_password="$proxy_password"
+EOF
+
+# Set file permissions to 600
+chmod 600 "$proxdad_config_file"
 
 # Display success message
 echo "ProxDad has been successfully installed at $proxdad_installation_path"
