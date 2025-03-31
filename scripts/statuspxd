@@ -7,28 +7,48 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Check proxy environment variables
+# Define colour codes
+GREEN="\e[1;32m"
+RED="\e[1;31m"
+RESET="\e[0m"
+CIRCLE="●"
+
+# Check if a proxy is configured
 if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
-    proxy_host=$(awk -F '[@:/]' '{print $6}' <<< "$proxy_var")
-    proxy_port=$(awk -F '[@:/]' '{print $7}' <<< "$proxy_var")
-    proxy_username=$(awk -F '[@:/]' '{print $4}' <<< "$proxy_var")
-    proxy_password=$(awk -F '[@:/]' '{print $5}' <<< "$proxy_var")
+
+    # Clean up proxy details
+    proxy_var=${proxy_var#*://}
+    proxy_var=${proxy_var//\"/}
     
-    echo -e "\e[1;32m\u25CF\e[0m ProxDad is ON"
-    echo "    ⤷ Proxy host: $proxy_host"
-    echo "    ⤷ Proxy port: $proxy_port"
+    # Extract credentials, host, and port using IFS
+    IFS=':@/' read -r proxy_username proxy_password proxy_host proxy_port <<< "${proxy_var}"
 
-    if [ -n "$proxy_username" ]; then
-        echo "    ⤷ Proxy username: $proxy_username"
+    # Display proxy status
+    echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is ON"
+
+    # Verify proxy server connectivity
+    if timeout 1 bash -c ">/dev/tcp/$proxy_host/$proxy_port" 2>/dev/null; then
+        echo -e "    ├── Proxy Server    : ${GREEN}[▲] Up${RESET}"
+
+        # Verify internet connectivity through proxy
+        if curl -s --proxy "$proxy_var" --max-time 2 --fail -o /dev/null "http://clients3.google.com/generate_204"; then
+            echo -e "    └── Internet Access : ${GREEN}[✔] Yes${RESET}"
+        else
+            echo -e "    └── Internet Access : ${RED}[✘] No${RESET}"
+        fi
+    else
+        echo -e "    └── Proxy Server    : ${RED}[▼] Down${RESET}"
     fi
 
-    if [ -n "$proxy_password" ]; then
-        masked_password=$(echo "$proxy_password" | sed 's/./*/g')
-        echo "    ⤷ Proxy password: $masked_password"
-    fi
+    # Display proxy configuration
+    echo -e "\n    Proxy Configuration\n\
+    ├── Host            : $proxy_host\n\
+    ├── Port            : $proxy_port\n\
+    ├── Username        : $proxy_username\n\
+    └── Password        : ${proxy_password//?/*}"
 
 else
-    echo -e "\e[1;31m\u25CF\e[0m ProxDad is OFF"
+    echo -e "${RED}${CIRCLE}${RESET} ProxDad is OFF"
 fi
 
 exit 0
