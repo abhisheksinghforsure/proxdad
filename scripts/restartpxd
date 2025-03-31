@@ -17,7 +17,7 @@ fi
 source $proxdad_config_file || exit 1
 
 # Update proxy environment variables for system-wide use
-sudo sed -i "/^export \(http\|https\|ftp\)_proxy=/s|=.*|=\"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\"|" /etc/environment
+sudo sed -i "/^\(http\|https\|ftp\)_proxy=/s|=.*|=\"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\"|" /etc/environment
 
 # Update proxy for apt (package manager)
 if command -v apt > /dev/null; then
