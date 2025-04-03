@@ -10,7 +10,7 @@
 source ./include/_utilspxd || exit 1
 
 # Get sudo permission
-sudo true
+sudo -v
 
 # Display default values and ask if the user wants to continue with them
 echo -e "Default values\n\
