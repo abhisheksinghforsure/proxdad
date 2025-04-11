@@ -26,12 +26,9 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Function to check if proxy details have been applied to environment
+# Return 0 if http_proxy is active in /etc/environment
 is_proxdad_on() {
-    if grep -q "http_proxy" "/etc/environment"; then
-        return 0  # Yes, It means -> ProxDad is ON
-    else
-        return 1  # No, It means -> ProxDad is OFF
-    fi
+    grep -q "^http_proxy=" "/etc/environment"
 }
 
 # Global variables (readonly for safety)
