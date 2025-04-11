@@ -15,7 +15,7 @@ CIRCLE="●"
 
 # Prevent root user from executing script
 if [[ $EUID -eq 0 ]]; then
-    echo -e "${RED}[WARNING]${RESET} Do not use root privileges"
+    echo -e "${RED}[ERROR]${RESET} Do not use root privileges"
     exit 1
 fi
 
