@@ -30,4 +30,4 @@ is_proxdad_on() {
 
 # Global variables (readonly for safety)
 readonly proxdad_installation_path="$HOME/.proxdad"
-readonly proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+readonly proxdad_config_file="${proxdad_installation_path}/proxdad.conf"
