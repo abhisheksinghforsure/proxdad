@@ -7,7 +7,9 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-source ./include/_utilspxd || exit 1
+set -e  # Exit on any failure
+
+source ./include/_utilspxd
 
 # Get sudo permission
 sudo -v

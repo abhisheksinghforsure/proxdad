@@ -7,7 +7,9 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-source _utilspxd || exit 1
+set -e  # Exit on any failure
+
+source _utilspxd
 
 # Function to display usage information
 usage() {

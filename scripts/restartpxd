@@ -7,14 +7,16 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-source _utilspxd || exit 1
+set -e  # Exit on any failure
+
+source _utilspxd
 
 if ! is_proxdad_on; then
-    onpxd || exit 1
+    onpxd
     exit 0
 fi
 
-source $proxdad_config_file || exit 1
+source $proxdad_config_file
 
 # Update proxy environment variables for system-wide use
 sudo sed -i "/^\(http\|https\|ftp\)_proxy=/s|=.*|=\"http://${proxy_username}:${proxy_password}@${proxy_host}:${proxy_port}\"|" /etc/environment
@@ -25,7 +27,7 @@ if command -v apt > /dev/null; then
 fi
 
 # Update proxy for gnome applet, kde applet, git, npm and snap
-source _cmmnpxd || exit 1
+source _cmmnpxd
 set_proxies
 
 # Update proxy for ssh
