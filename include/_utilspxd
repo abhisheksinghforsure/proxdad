@@ -28,6 +28,6 @@ is_proxdad_on() {
     fi
 }
 
-# Global vars
-proxdad_installation_path="$HOME/.proxdad"
-proxdad_config_file="$proxdad_installation_path/proxdad.conf"
+# Global variables (readonly for safety)
+readonly proxdad_installation_path="$HOME/.proxdad"
+readonly proxdad_config_file="$proxdad_installation_path/proxdad.conf"
