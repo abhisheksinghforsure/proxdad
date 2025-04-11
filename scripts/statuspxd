@@ -41,7 +41,7 @@ if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
     fi
 
     # Display proxy configuration
-    echo -e "\n    Proxy Configuration\n\
+    echo -e "  Proxy Configuration\n\
     ├── Host            : $proxy_host\n\
     ├── Port            : $proxy_port\n\
     ├── Username        : $proxy_username\n\
