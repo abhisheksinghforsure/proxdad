@@ -8,10 +8,10 @@
 # 
 
 # Define colour codes
-GREEN="\e[1;32m"
-RED="\e[1;31m"
-RESET="\e[0m"
-CIRCLE="●"
+readonly GREEN="\e[1;32m"
+readonly RED="\e[1;31m"
+readonly RESET="\e[0m"
+readonly CIRCLE="●"
 
 # Prevent root user from executing script
 if [[ $EUID -eq 0 ]]; then
