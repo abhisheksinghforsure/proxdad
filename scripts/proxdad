@@ -7,7 +7,13 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-source _utilspxd || exit 1
+set -e  # Exit on any failure
+
+. _utilspxd
+
+# Run basic shell safety checks
+verify_bash
+verify_non_root
 
 # Function to display usage information
 usage() {

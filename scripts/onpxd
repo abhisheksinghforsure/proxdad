@@ -7,14 +7,20 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-source _utilspxd || exit 1
+set -e  # Exit on any failure
+
+. _utilspxd
+
+# Run basic shell safety checks
+verify_bash
+verify_non_root
 
 if is_proxdad_on; then
     echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is already ON"
     exit 0
 fi
 
-source $proxdad_config_file || exit 1
+source $proxdad_config_file
 
 # Backup of environment
 sudo cp /etc/environment /etc/environment.bak
@@ -37,7 +43,7 @@ EOF
 fi
 
 # Set proxy for gnome applet, kde applet, git, npm and snap
-source _cmmnpxd || exit 1
+source _cmmnpxd
 set_proxies
 
 # Set proxy for ssh

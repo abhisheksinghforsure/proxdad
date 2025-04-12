@@ -7,11 +7,13 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Define colour codes
-GREEN="\e[1;32m"
-RED="\e[1;31m"
-RESET="\e[0m"
-CIRCLE="●"
+set -e  # Exit on any failure
+
+. _utilspxd
+
+# Run basic shell safety checks
+verify_bash
+verify_non_root
 
 # Check if a proxy is configured
 if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
@@ -41,7 +43,7 @@ if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
     fi
 
     # Display proxy configuration
-    echo -e "\n    Proxy Configuration\n\
+    echo -e "  Proxy Configuration\n\
     ├── Host            : $proxy_host\n\
     ├── Port            : $proxy_port\n\
     ├── Username        : $proxy_username\n\

@@ -7,7 +7,13 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-source _utilspxd || exit 1
+set -e  # Exit on any failure
+
+. _utilspxd
+
+# Run basic shell safety checks
+verify_bash
+verify_non_root
 
 # Prompt the user to confirm uninstallation
 read -p "Do you really want to uninstall ProxDad? [y/N]: " uninstall_choice
@@ -18,7 +24,7 @@ if [ "${uninstall_choice,,}" != "y" ] && [ "${uninstall_choice,,}" != "yes" ]; t
 fi
 
 # Execute offpxd script to turn OFF ProxDad if ON
-offpxd > /dev/null || exit 1
+offpxd > /dev/null
 
 # Remove the ProxDad folder and its contents
 sudo rm -rf "$proxdad_installation_path"

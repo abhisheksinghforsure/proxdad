@@ -7,7 +7,13 @@
 # Copyright (C) 2024 Abhishek Singh
 #
 
-source _utilspxd || exit 1
+set -e  # Exit on any failure
+
+. _utilspxd
+
+# Run basic shell safety checks
+verify_bash
+verify_non_root
 
 # Function to display usage information
 usage() {
@@ -33,7 +39,7 @@ EOF
 
 # Function to update config file
 update_proxdad_config_file() {
-    source $proxdad_config_file || exit 1
+    source $proxdad_config_file
 
     # Update config based on arguments
     [[ $# -eq 0 ]] && { usage; }
