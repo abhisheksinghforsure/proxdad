@@ -6,30 +6,38 @@
 # Copyright (C) 2024 Abhishek Singh
 # 
 
-# Define colour codes
-readonly GREEN="\e[1;32m"
-readonly RED="\e[1;31m"
-readonly RESET="\e[0m"
-readonly CIRCLE="●"
-
-# Check if the script is being run with Bash
-if [ -z "$BASH_VERSION" ]; then
-    printf "${RED}[ERROR]${RESET} Use 'Bash' to run this script\n" >&2
-    exit 1
+# Define colors (POSIX-safe)
+if [ -t 1 ]; then  # Only define colors if stdout is a terminal
+    readonly GREEN="$(printf '\033[1;32m')"
+    readonly RED="$(printf '\033[1;31m')"
+    readonly RESET="$(printf '\033[0m')"
+    readonly CIRCLE="●"
+else
+    readonly GREEN="" RED="" RESET="" CIRCLE=""
 fi
 
-# Prevent root user from executing script
-if [[ $EUID -eq 0 ]]; then
-    echo -e "${RED}[ERROR]${RESET} Do not use root privileges"
-    exit 1
-fi
+# Global variables
+readonly proxdad_installation_path="$HOME/.proxdad"
+readonly proxdad_config_file="${proxdad_installation_path}/proxdad.conf"
+
+# Function to verify Bash is being used
+verify_bash() {
+    if [ -z "$BASH_VERSION" ]; then
+        printf "%s[ERROR]%s Use 'Bash' to run this script\n" "$RED" "$RESET" >&2
+        return 1
+    fi
+}
+
+# Function to verify script is not run as root
+verify_non_root() {
+    if [ "$(id -u)" -eq 0 ]; then
+        printf "%s[ERROR]%s Do not use root privileges\n" "$RED" "$RESET" >&2
+        return 1
+    fi
+}
 
 # Function to check if proxy details have been applied to environment
 # Return 0 if http_proxy is active in /etc/environment
 is_proxdad_on() {
     grep -q "^http_proxy=" "/etc/environment"
 }
-
-# Global variables (readonly for safety)
-readonly proxdad_installation_path="$HOME/.proxdad"
-readonly proxdad_config_file="${proxdad_installation_path}/proxdad.conf"
