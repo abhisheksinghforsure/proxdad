@@ -9,7 +9,7 @@
 
 set -e  # Exit on any failure
 
-source _utilspxd
+. _utilspxd
 
 if is_proxdad_on; then
     echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is already ON"

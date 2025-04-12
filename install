@@ -9,7 +9,7 @@
 
 set -e  # Exit on any failure
 
-source ./include/_utilspxd
+. ./include/_utilspxd
 
 # Get sudo permission
 sudo -v
