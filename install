@@ -11,6 +11,10 @@ set -e  # Exit on any failure
 
 . ./include/_utilspxd
 
+# Run basic shell safety checks
+verify_bash
+verify_non_root
+
 # Get sudo permission
 sudo -v
 
