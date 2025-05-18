@@ -18,28 +18,46 @@ verify_non_root
 # Check if a proxy is configured
 if proxy_var=$(grep -E "http_proxy" "/etc/environment"); then
 
+    # Display proxy status
+    echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is ON"
+
+    # Get default interface
+    iface=$(ip route | awk '/^default/ {print $5; exit}')
+
+    # Show network status
+    active_network=true
+    if [ -n "$iface" ]; then
+        if ssid=$(iwgetid "$iface" -r 2>/dev/null); then
+            echo -e "    ├── Active Network  : ${GREEN}[✔] Wi-Fi ($iface) - $ssid${RESET}"
+        else
+            echo -e "    ├── Active Network  : ${GREEN}[✔] Ethernet ($iface)${RESET}"
+        fi
+    else
+        echo -e "    └── Active Network  : ${RED}[✘] None${RESET}"
+        active_network=false
+    fi
+
     # Clean up proxy details
     proxy_var=${proxy_var#*://}
     proxy_var=${proxy_var//\"/}
     
     # Extract credentials, host, and port using IFS
     IFS=':@/' read -r proxy_username proxy_password proxy_host proxy_port <<< "${proxy_var}"
-
-    # Display proxy status
-    echo -e "${GREEN}${CIRCLE}${RESET} ProxDad is ON"
-
+    
     # Verify proxy server connectivity
-    if timeout 1 bash -c ">/dev/tcp/$proxy_host/$proxy_port" 2>/dev/null; then
-        echo -e "    ├── Proxy Server    : ${GREEN}[▲] Up${RESET}"
+    if [ "$active_network" = true ]; then
+        if timeout 1 bash -c ">/dev/tcp/$proxy_host/$proxy_port" 2>/dev/null; then
+            echo -e "    ├── Proxy Server    : ${GREEN}[▲] Up${RESET}"
 
-        # Verify internet connectivity through proxy
-        if curl -s --proxy "$proxy_var" --max-time 2 --fail -o /dev/null "http://clients3.google.com/generate_204"; then
-            echo -e "    └── Internet Access : ${GREEN}[✔] Yes${RESET}"
+            # Verify internet connectivity through proxy
+            if curl -s --proxy "$proxy_var" --max-time 2 --fail -o /dev/null "http://clients3.google.com/generate_204"; then
+                echo -e "    └── Internet Access : ${GREEN}[✔] Yes${RESET}"
+            else
+                echo -e "    └── Internet Access : ${RED}[✘] No${RESET}"
+            fi
         else
-            echo -e "    └── Internet Access : ${RED}[✘] No${RESET}"
+            echo -e "    └── Proxy Server    : ${RED}[▼] Down${RESET}"
         fi
-    else
-        echo -e "    └── Proxy Server    : ${RED}[▼] Down${RESET}"
     fi
 
     # Display proxy configuration
